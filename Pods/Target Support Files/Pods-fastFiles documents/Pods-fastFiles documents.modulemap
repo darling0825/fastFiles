@@ -1,0 +1,6 @@
+framework module Pods_fastFiles_documents {
+  umbrella header "Pods-fastFiles documents-umbrella.h"
+
+  export *
+  module * { export * }
+}

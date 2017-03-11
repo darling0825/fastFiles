@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-fastFiles documents.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-fastFiles documentsFileProvider.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-fastFiles share.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-fastFiles.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Zip.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>8BDA57E29541114A50AB46DA2BB3FB26</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BC2509B03A0C24E416B44EB32C090D96</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D5A11B2A2C9931B3D3ED9D5E4AB1ECCC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E5FF86AB63EF82CE22BEB0821A89EB56</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F69710FC49A275DA605B8F10A4C2D769</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

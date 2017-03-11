@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>fastFiles documents.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>fastFiles documentsFileProvider.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>fastFiles share.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>fastFiles.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>3A72035A1E62521A00225ADE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3A7203681E62521B00225ADE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3A99A28C1E624CEE001136AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3A99A29A1E624CEE001136AB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3ADE025E1E5B6F2C00F0DB3A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AF361F61E639C4B000C735C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3AF362081E639C7F000C735C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
