@@ -1,12 +1,15 @@
 PODS:
+  - Highlightr (1.1.0)
   - Zip (0.6.0)
 
 DEPENDENCIES:
+  - Highlightr
   - Zip (~> 0.6)
 
 SPEC CHECKSUMS:
+  Highlightr: 519911a0a9a040d76e591f6fe58bb5177c8bdaa3
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: afe328dc0f4d63811af8d04588ad72ae2065b068
+PODFILE CHECKSUM: f2b6a3070035bc5139444c02bafcda078b914a6b
 
 COCOAPODS: 1.2.0

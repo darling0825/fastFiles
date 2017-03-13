@@ -31,10 +31,14 @@ extension DownloadViewController {
             if self.terminationStatus != "" { // Check if a download is finished
                 self.dismiss(animated: false, completion: { // Dismiss alert
                     if self.terminationStatus != "Success" { // Download failed
+                        self.blur.isHidden = true
+                        self.navigationController?.isNavigationBarHidden = false
                         let alert = UIAlertController(title: "Error!", message: self.terminationStatus, preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
                         self.present(alert, animated: true, completion: nil)
                     } else { // Download successed
+                        self.blur.isHidden = true
+                        self.navigationController?.isNavigationBarHidden = false
                         self.performSegue(withIdentifier: "Downloads", sender: nil)
                     }
                     
@@ -46,6 +50,8 @@ extension DownloadViewController {
         }
         
         webView.delegate = self // Set WebView delegate
+        
+        blur.isHidden = true // Unblur
         
     }
 }

@@ -33,4 +33,5 @@ class BrowserTableViewController: UITableViewController {
     
     @IBOutlet weak var Ad: GADBannerView!
     
+
 }

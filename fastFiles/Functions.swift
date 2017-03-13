@@ -15,7 +15,9 @@ extension AppDelegate {
         
         // Move files imported with iTunes to public documents folder
         moveToPublic()
-                
+        
+        iCloudSync() // Sync with iCloud
+        
         return true
     }
     

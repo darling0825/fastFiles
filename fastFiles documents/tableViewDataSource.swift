@@ -47,6 +47,16 @@ extension DocumentPickerViewController: UITableViewDataSource {
                         image.image = #imageLiteral(resourceName: "html.png")
                     } else if url.pathExtension.lowercased() == "zip" { // Is zip
                         image.image = #imageLiteral(resourceName: "zipFile.png")
+                    } else if url.pathExtension.lowercased() == "swift" {
+                        image.image = #imageLiteral(resourceName: "SwiftFile") // Is Swift
+                    } else if url.pathExtension.lowercased() == "m" && url.pathExtension.lowercased() == "mm" {
+                        image.image = #imageLiteral(resourceName: "OBJCFile") // Is Objective-C
+                    } else if url.pathExtension.lowercased() == "py" {
+                        image.image = #imageLiteral(resourceName: "PYFile") // Is Python
+                    } else if url.pathExtension.lowercased() == "icloud" {
+                        image.image = #imageLiteral(resourceName: "iCloud-Drive") // Is undownloaded file
+                        label.text?.remove(at: (label.text?.startIndex)!)
+                        label.text = label.text?.replacingOccurrences(of: "."+url.pathExtension, with: "")
                     } else {
                         do {
                             let _ = try String(contentsOf: url, encoding: String.Encoding.utf8)

@@ -50,7 +50,9 @@ extension BrowserTableViewController {
         label.font = labelFont
         label.text = files[indexPath.row]
         
-        let url = URL(string:("file://"+self.dir+files[indexPath.row]).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)! // Current file url
+        cell.viewWithTag(5)?.isHidden = true
+        
+        let url = URL(fileURLWithPath: self.dir).appendingPathComponent(files[indexPath.row]) // Current file url
         var isDir: ObjCBool = false
         if FileManager.default.fileExists(atPath: self.dir+"/"+files[indexPath.row], isDirectory: &isDir) { // Check if file exists
             do {
@@ -65,6 +67,18 @@ extension BrowserTableViewController {
                         image.image = #imageLiteral(resourceName: "html.png") // Is HTML
                     } else if url.pathExtension.lowercased() == "zip" {
                         image.image = #imageLiteral(resourceName: "zipFile.png") // Is zip
+                    } else if url.pathExtension.lowercased() == "swift" {
+                        image.image = #imageLiteral(resourceName: "SwiftFile") // Is Swift
+                    } else if url.pathExtension.lowercased() == "m" && url.pathExtension.lowercased() == "mm" {
+                        image.image = #imageLiteral(resourceName: "OBJCFile") // Is Objective-C
+                    } else if url.pathExtension.lowercased() == "py" {
+                        image.image = #imageLiteral(resourceName: "PYFile") // Is Python
+                    } else if url.pathExtension.lowercased() == "icloud" {
+                        image.image = #imageLiteral(resourceName: "iCloud-Drive") // Is undownloaded file
+                        cell.viewWithTag(5)?.isHidden = false
+                        (cell.viewWithTag(5) as! UIActivityIndicatorView).startAnimating()
+                        label.text?.remove(at: (label.text?.startIndex)!)
+                        label.text = label.text?.replacingOccurrences(of: "."+url.pathExtension, with: "")
                     } else {
                         do {
                             let _ = try String(contentsOf: url, encoding: String.Encoding.utf8)
@@ -76,6 +90,11 @@ extension BrowserTableViewController {
                     }
                 } else {
                     image.image = #imageLiteral(resourceName: "Folder") // Is directory
+                    
+                    if label.text == ".Trash" {
+                        image.image = #imageLiteral(resourceName: "Trash") // Is the trash
+                        label.text = ""
+                    }
                 }
             } catch let error {
                 image.image = #imageLiteral(resourceName: "file")
@@ -160,10 +179,10 @@ extension BrowserTableViewController {
                     } else if url.pathExtension.lowercased() == "zip" { // Is ZIP
                         do {
                             let zipURL = try Zip.quickUnzipFile(url) // Unzip file
-                            let newURL = URL(string: ("file://"+"/"+self.dir+"/"+zipURL.lastPathComponent).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
-                            try FileManager.default.moveItem(at: zipURL, to: newURL!)
+                            let newURL = URL(fileURLWithPath:self.dir).appendingPathComponent(zipURL.lastPathComponent)
+                            try FileManager.default.moveItem(at: zipURL, to: newURL)
                             self.reload()
-                            nextDir = (newURL?.absoluteString.replacingOccurrences(of: "file://", with: "").removingPercentEncoding!)! // Unzipped directory path
+                            nextDir = (newURL.absoluteString.replacingOccurrences(of: "file://", with: "").removingPercentEncoding!) // Unzipped directory path
                             
                             // Open unzipped directory
                             if self.restorationIdentifier == "first" {
@@ -178,7 +197,7 @@ extension BrowserTableViewController {
                         }
                     } else {
                         do {
-                            let _ = try String(contentsOf: url, encoding: String.Encoding.utf8) // Continue if is text, error if is unknown file
+                            let _ = try String(contentsOf: url) // Continue if is text
                             imageURL = url
                             print("IS TEXt")
                             self.performSegue(withIdentifier: "text", sender: nil)

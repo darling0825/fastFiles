@@ -2,12 +2,13 @@
 # platform :ios, '9.0'
 
 target 'fastFiles' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks"
   use_frameworks!
 
   # Pods for fastFiles
 
   pod 'Zip', '~> 0.6'
+  pod 'Highlightr'
 
 end
 
@@ -31,13 +32,4 @@ target 'fastFiles documentsFileProvider' do
 
 end
 
-target 'fastFiles share' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-
-  # Pods for fastFiles share
-
-  pod 'Zip', '~> 0.6'
-
-end
 

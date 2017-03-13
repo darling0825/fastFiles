@@ -19,6 +19,7 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
     @IBOutlet weak var customName: UITextField!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var google: UITextField!
+    @IBOutlet weak var blur: UIVisualEffectView!
    
     var terminationStatus = ""
     
@@ -53,8 +54,11 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
             }
         }
         
-        var urlStr = "file://"+(destination.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed))!
-        let destinationURL = URL(string: urlStr)
+        if destination.hasSuffix(".") {
+            destination.remove(at: destination.index(before: destination.endIndex))
+        }
+        
+        let destinationURL = URL(fileURLWithPath: destination)
         
         
         if true {
@@ -77,15 +81,17 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
                 indicator.isUserInteractionEnabled = false
                 indicator.startAnimating()
             
+                self.blur.isHidden = false
+                self.navigationController?.isNavigationBarHidden = true
                 self.present(alert, animated: true, completion: nil)
             
                 let task = URLSession.shared.downloadTask(with: self.fileURL!, completionHandler: { (location, reponse, error) in
                 
                     if error == nil {
                         do {
-                            self.finalDest = destinationURL!
+                            self.finalDest = destinationURL
                             self.url.resignFirstResponder()
-                            try FileManager.default.moveItem(at: location!, to: destinationURL!)
+                            try FileManager.default.moveItem(at: location!, to: destinationURL)
                             self.terminationStatus = "Success"
                         } catch let moveError {
                             self.terminationStatus = moveError.localizedDescription
@@ -93,6 +99,8 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
                     } else {
                         print("ERRROR")
                         self.dismiss(animated: false, completion: {
+                            self.blur.isHidden = true
+                            self.navigationController?.isNavigationBarHidden = false
                             let alert = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
                             self.present(alert, animated: true, completion: nil)

@@ -19,4 +19,38 @@ class App {
     }
     
     let adID = "ca-app-pub-9214899206650515/7127479986"
+    
+    func iCloudDrive() -> URL? {
+        return FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents")
+    }
+    
+    func downloadFromCloud(directory:String) {
+        do {
+            let files = try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath:directory), includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsSubdirectoryDescendants)
+            
+            for file in files {
+                if file.lastPathComponent.hasPrefix(".") && file.pathExtension.lowercased() == "icloud" {
+                    
+                    var iCloudFileURL = file.deletingLastPathComponent()
+                    iCloudFileURL = file
+                    iCloudFileURL = iCloudFileURL.deletingPathExtension()
+                    var str = iCloudFileURL.lastPathComponent
+                    str.remove(at: str.startIndex)
+                    str = iCloudFileURL.deletingLastPathComponent().appendingPathComponent(str).path
+                    iCloudFileURL = URL(fileURLWithPath: str)
+                    
+                    do {
+                        try FileManager.default.startDownloadingUbiquitousItem(at: iCloudFileURL)
+                    } catch let error {
+                        print("ERROR: \(error.localizedDescription)")
+                    }
+                    
+                    print(iCloudFileURL)
+                }
+            }
+            
+        } catch let error {
+            print("ERROR:\(error.localizedDescription)")
+        }
+    }
 }

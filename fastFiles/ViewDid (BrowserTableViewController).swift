@@ -27,6 +27,31 @@ extension BrowserTableViewController {
             })
         }
         
+        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (Timer) in // Check if iCloud files are downloaded
+            
+            do {
+              let files = try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath:self.dir), includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsPackageDescendants)
+                
+                var undownloadedFiles = 0
+                for file in files {
+                    if file.pathExtension.lowercased() == "icloud" && file.lastPathComponent.hasPrefix(".") {
+                        undownloadedFiles+=1
+                    }
+                }
+                
+                if undownloadedFiles == 0 {
+                    Timer.invalidate()
+                    self.reload()
+                } else {
+                    undownloadedFiles = 0
+                }
+                
+            } catch let error {
+                print("ERROR: \(error.localizedDescription)")
+            }
+            
+        }
+        
     }
     
     // and...
@@ -44,15 +69,30 @@ extension BrowserTableViewController {
             files = try FileManager.default.contentsOfDirectory(atPath: dir)
             print(files)
         } catch let error {
-            let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
-                _ = self.navigationController?.popViewController(animated: true)
-                
-            }))
-            self.present(alert, animated: true, completion: nil)
+            if self.dir != "/iCloud" {
+                let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+                    _ = self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true, completion: nil)
+            } else {
+                let alert = UIAlertController(title: "Error!", message: "Login to iCloud if you want to use this feature", preferredStyle: .alert)
+    
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+                    _ = self.navigationController?.popViewController(animated: true)
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
         }
         
         showAd() // Display ad
+        
+        if App().iCloudDrive() != nil {if dir.contains((App().iCloudDrive()?.path)!) {
+            DispatchQueue.global(qos: .background).async {
+                App().downloadFromCloud(directory: self.dir) // Download from iCloud Drive
+            }
+        }}
         
     }
 }

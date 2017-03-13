@@ -16,7 +16,7 @@ import UIKit
 extension TextViewController {
     func displayText() {
         do {
-            let fileContent = try String(contentsOf: url!, encoding: String.Encoding.utf8)
+            let fileContent = try String(contentsOf: url)
             text.text = fileContent
         } catch let error {
             let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
@@ -26,5 +26,25 @@ extension TextViewController {
             }))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func keyboardWillShow(notification:NSNotification) {
+        let d = notification.userInfo!
+        var r = d[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        r = self.text.convert(r, from:nil)
+        self.text.contentInset.bottom = r.size.height
+        self.text.scrollIndicatorInsets.bottom = r.size.height
+        
+        keyboard.isEnabled = true
+    }
+    
+    func keyboardWillHide(notification:NSNotification) {
+        let d = notification.userInfo!
+        var r = d[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        r = self.text.convert(r, from:nil)
+        self.text.contentInset.bottom = r.size.height
+        self.text.scrollIndicatorInsets.bottom = r.size.height
+        
+        keyboard.isEnabled = false
     }
 }

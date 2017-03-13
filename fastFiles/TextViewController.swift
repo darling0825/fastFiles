@@ -11,10 +11,11 @@ import UIKit
 class TextViewController: UIViewController {
     
     // Variables
+    
     var url: URL!
     @IBOutlet weak var text: UITextView!
+    @IBOutlet weak var keyboard: UIBarButtonItem!
     
-
     
     // Actions
     
@@ -41,4 +42,7 @@ class TextViewController: UIViewController {
     @IBAction func loadHTML(_ sender: Any) { // Load HTML
         self.performSegue(withIdentifier: "HTML", sender: nil)
     }
+    
+
+    
 }

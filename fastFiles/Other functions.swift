@@ -29,11 +29,15 @@ extension BrowserTableViewController {
             self.present(alert, animated: true, completion: nil)
         }
         
-        self.title = URL(string: "file://"+dir.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)?.lastPathComponent
+        self.title = URL(fileURLWithPath: dir).lastPathComponent
         if self.title == "File Provider Storage" {
             self.title = "Documents"
         }
         self.tableView.reloadData()
+        
+        if URL(fileURLWithPath: dir) == App().iCloudDrive() {
+            self.title = "iCloud"
+        }
     }
     
     
@@ -54,10 +58,10 @@ extension BrowserTableViewController {
             } else {
                 self.reload()
                 
-                var file = URL(string: "file://"+self.dir.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
-                file = file?.appendingPathComponent((alert.textFields?[0].text!)!)
+                var file = URL(fileURLWithPath: self.dir)
+                file = file.appendingPathComponent((alert.textFields?[0].text!)!)
                 let files = try! FileManager.default.contentsOfDirectory(atPath: self.dir)
-                let nextFileIndex = files.index(of: file!.lastPathComponent)
+                let nextFileIndex = files.index(of: file.lastPathComponent)
                 
                 self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
@@ -74,10 +78,10 @@ extension BrowserTableViewController {
                 
                 self.reload()
                 
-                var file = URL(string: "file://"+self.dir.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
-                file = file?.appendingPathComponent((alert.textFields?[0].text!)!)
+                var file = URL(fileURLWithPath: self.dir)
+                file = file.appendingPathComponent((alert.textFields?[0].text!)!)
                 let files = try! FileManager.default.contentsOfDirectory(atPath: self.dir)
-                let nextFileIndex = files.index(of: file!.lastPathComponent)
+                let nextFileIndex = files.index(of: file.lastPathComponent)
                 
                 self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
                 Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
@@ -170,10 +174,10 @@ extension BrowserTableViewController {
                     
                     self.present(alert, animated: true, completion: nil)
                     
-                    let zipfile = try! Zip.quickZipFiles([URL(string: ("file://"+self.dir+"/"+(createAlert.textFields?[0].text)!).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!], fileName: (createAlert.textFields?[0].text)!)
-                    try! FileManager.default.removeItem(atPath: self.dir+"/"+(createAlert.textFields?[0].text)!)
+                    let zipfile = try! Zip.quickZipFiles([URL(fileURLWithPath:self.dir).appendingPathComponent((createAlert.textFields?[0].text)!)], fileName: (createAlert.textFields?[0].text)!)
+                    try! FileManager.default.removeItem(atPath: URL(fileURLWithPath:self.dir).appendingPathComponent(createAlert.textFields![0].text!).path)
                     
-                    try! FileManager.default.moveItem(at: zipfile, to: URL(string:("file://\(self.dir)/\(zipfile.lastPathComponent)").addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!)
+                    try! FileManager.default.moveItem(at: zipfile, to: URL(fileURLWithPath: self.dir).appendingPathComponent(zipfile.lastPathComponent))
                         
                     self.reload()
                         

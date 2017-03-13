@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import AVKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     // Variables
     
@@ -24,6 +24,10 @@ class ViewController: UIViewController {
     
     @IBAction func Documents(_ sender: Any) {
         self.performSegue(withIdentifier: "Docs", sender: nil)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
     
     

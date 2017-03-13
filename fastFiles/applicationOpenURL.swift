@@ -20,7 +20,15 @@ extension AppDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         print("URL RECEIVED")
         
-        let file = URL(string: url.absoluteString.replacingOccurrences(of: "files://", with: "file://"))
+        var file = URL(string: url.absoluteString.replacingOccurrences(of: "files://", with: "file://"))
+        let newURL = docsURL.appendingPathComponent((file?.lastPathComponent)!)
+        
+        do {
+            try FileManager.default.moveItem(at: file!, to: newURL)
+            file = newURL
+        } catch let error {
+            print("ERROR: \(error.localizedDescription)")
+        }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = storyboard.instantiateViewController(withIdentifier: "Main") as! UINavigationController

@@ -59,5 +59,21 @@ extension ViewController {
             }
         }
         
+        if segue.identifier == "iCloud" { // Open iCloud Drive
+            if let nextVC = segue.destination as? BrowserTableViewController {
+                if App().iCloudDrive() != nil {
+                    nextVC.dir = (App().iCloudDrive()?.path)!
+                } else {
+                    nextVC.dir = "/iCloud"
+                }
+            }
+        }
+        
+        if segue.identifier == "highlightrLICENSE" { // Open Highlightr MIT License file
+            if let nextVC = segue.destination as? TextViewController {
+                nextVC.url = URL(fileURLWithPath: Bundle.main.path(forResource: "Highlightr", ofType: "")!).appendingPathComponent("index.txt")
+            }
+        }
+        
     }
 }
