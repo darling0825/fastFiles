@@ -63,9 +63,35 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
         
         if true {
             print("CONTINUE DOWNLOAD")
-            if FileManager.default.fileExists(atPath: destination) {
+            if FileManager.default.fileExists(atPath: destination) && destinationURL.lastPathComponent != "File Provider Storage" {
                 let alert = UIAlertController(title: "Error!", message: "This file has been already downloaded!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+                self.present(alert, animated: true, completion: nil)
+            } else if destinationURL.lastPathComponent == "File Provider Storage" {
+                let alert = UIAlertController(title: "Select file name", message: "", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
+                    let filename = alert.textFields?[0].text
+                    let fileExtension = alert.textFields?[1].text
+                    
+                    if fileExtension == "" {
+                        self.customName.text = filename
+                        self.downloadFile(self)
+                    } else {
+                        self.customName.text = filename!+"."+fileExtension!
+                        self.downloadFile(self)
+                    }
+                    
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                
+                alert.addTextField(configurationHandler: { (UITextField) in
+                    UITextField.placeholder = "File name"
+                })
+                
+                alert.addTextField(configurationHandler: { (UITextField) in
+                    UITextField.placeholder = "File extension"
+                })
+                
                 self.present(alert, animated: true, completion: nil)
             } else {
                 
@@ -118,16 +144,24 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         fileURL = request.url!
+        (view.viewWithTag(10) as! UIActivityIndicatorView).isHidden = false
         
         return true
     }
     
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        customName.text = ""
+        (view.viewWithTag(10) as! UIActivityIndicatorView).isHidden = true
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
-        downloadFile(self)
+        (view.viewWithTag(10) as! UIActivityIndicatorView).isHidden = true
+        if error.localizedDescription == "Frame load interrupted" { // Is downloadable file
+            downloadFile(self)
+        } else {
+            let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
 }

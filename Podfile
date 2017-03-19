@@ -9,6 +9,7 @@ target 'fastFiles' do
 
   pod 'Zip', '~> 0.6'
   pod 'Highlightr'
+  pod 'Swifter', '~> 1.3.2'
 
 end
 

@@ -53,4 +53,12 @@ class App {
             print("ERROR:\(error.localizedDescription)")
         }
     }
+    
+}
+
+extension URL {
+    var urlScheme: URL {
+        
+        return URL(string:self.absoluteString.replacingOccurrences(of: "file://", with: "files://"))!
+    }
 }

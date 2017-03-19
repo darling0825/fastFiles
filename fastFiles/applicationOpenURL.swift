@@ -20,14 +20,17 @@ extension AppDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         print("URL RECEIVED")
         
-        var file = URL(string: url.absoluteString.replacingOccurrences(of: "files://", with: "file://"))
-        let newURL = docsURL.appendingPathComponent((file?.lastPathComponent)!)
+        var file = url.urlScheme
         
-        do {
-            try FileManager.default.moveItem(at: file!, to: newURL)
-            file = newURL
-        } catch let error {
-            print("ERROR: \(error.localizedDescription)")
+        if url != file { // Is external file
+            do {
+                try FileManager.default.moveItem(at: url, to: docsURL.appendingPathComponent(url.lastPathComponent))
+                file = docsURL.appendingPathComponent(url.lastPathComponent)
+            } catch _ {
+                if FileManager.default.fileExists(atPath: docsURL.appendingPathComponent(url.lastPathComponent).path) {
+                    file = docsURL.appendingPathComponent(url.lastPathComponent)
+                }
+            }
         }
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -47,7 +50,7 @@ extension AppDelegate {
         }
         
         var isDir: ObjCBool = false
-        if FileManager.default.fileExists(atPath: file!.path, isDirectory: &isDir) { // Check if file exists
+        if FileManager.default.fileExists(atPath: file.path, isDirectory: &isDir) { // Check if file exists
             
             print("FILE EXISTS")
             
@@ -56,7 +59,7 @@ extension AppDelegate {
                 
                 // Directory path
                 let defaults = UserDefaults.standard
-                defaults.set(file!.path, forKey: "path")
+                defaults.set(file.path, forKey: "path")
                 defaults.removeObject(forKey: "fileIndex")
                 defaults.synchronize()
                 
@@ -67,11 +70,11 @@ extension AppDelegate {
                 
                 // Directory path
                 let defaults = UserDefaults.standard
-                defaults.set(file!.path.replacingOccurrences(of: (file?.lastPathComponent)!, with: ""), forKey: "path")
+                defaults.set(file.deletingLastPathComponent().path, forKey: "path")
                 
                 // Selected row
-                let files = try! FileManager.default.contentsOfDirectory(atPath: file!.path.replacingOccurrences(of: (file?.lastPathComponent)!, with: ""))
-                let nextFileIndex = files.index(of: file!.lastPathComponent)
+                let files = try! FileManager.default.contentsOfDirectory(atPath: file.deletingLastPathComponent().path)
+                let nextFileIndex = files.index(of: file.lastPathComponent)
                 defaults.removeObject(forKey: "fileIndex")
                 defaults.set([nextFileIndex!], forKey: "fileIndex")
                 

@@ -69,10 +69,12 @@ extension BrowserTableViewController {
                         image.image = #imageLiteral(resourceName: "zipFile.png") // Is zip
                     } else if url.pathExtension.lowercased() == "swift" {
                         image.image = #imageLiteral(resourceName: "SwiftFile") // Is Swift
-                    } else if url.pathExtension.lowercased() == "m" && url.pathExtension.lowercased() == "mm" {
+                    } else if url.pathExtension.lowercased() == "m" || url.pathExtension.lowercased() == "mm" {
                         image.image = #imageLiteral(resourceName: "OBJCFile") // Is Objective-C
                     } else if url.pathExtension.lowercased() == "py" {
                         image.image = #imageLiteral(resourceName: "PYFile") // Is Python
+                    } else if url.pathExtension.lowercased() == "rtf" || url.pathExtension.lowercased() == "doc" || url.pathExtension.lowercased() == "docx" {
+                        image.image = #imageLiteral(resourceName: "rtfFile") // Is RTF or Word
                     } else if url.pathExtension.lowercased() == "icloud" {
                         image.image = #imageLiteral(resourceName: "iCloud-Drive") // Is undownloaded file
                         cell.viewWithTag(5)?.isHidden = false
@@ -106,6 +108,32 @@ extension BrowserTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) { // Did select row
+        
+        let url = URL(string: "file://")!.appendingPathComponent(dir).appendingPathComponent(files[indexPath.row]) // File URL
+        
+        
+        // Save to history
+        
+        var history = [URL]()
+        
+        let defaults = UserDefaults(suiteName: "group.marcela.ada.files")
+        if defaults?.array(forKey: "history") != nil {
+            let data = defaults?.array(forKey: "history") as? [Data]
+            history = (data?.map { URL(dataRepresentation: $0, relativeTo: nil)! })!
+            if history.contains(url) {
+                history.append(url)
+                history.remove(at: 0)
+            } else {
+                history.append(url)
+            }
+        }
+        
+        
+        let urlsData = history.map { $0.dataRepresentation }
+        defaults?.set(urlsData, forKey: "history")
+        defaults?.synchronize()
+        
+        print(history)
         
         self.tableView.deselectRow(at: indexPath, animated: true) // Deselect row
         
@@ -141,7 +169,7 @@ extension BrowserTableViewController {
                 
                 print("IS FILE")
                 
-                let url = URL(string: "file://")!.appendingPathComponent(dir).appendingPathComponent(files[indexPath.row]) // File URL
+                
                 print(url)
                 
                 do {
@@ -173,7 +201,7 @@ extension BrowserTableViewController {
                         
                         self.present(alert, animated: true, completion: nil)
                         
-                    } else if url.pathExtension.lowercased() == "pdf" { // Is PDF
+                    } else if url.pathExtension.lowercased() == "pdf" || url.pathExtension.lowercased() == "doc" || url.pathExtension.lowercased() == "docx" { // Is PDF or Word
                         imageURL = url
                         self.performSegue(withIdentifier: "PDF", sender: self) // Open PDF
                     } else if url.pathExtension.lowercased() == "zip" { // Is ZIP
@@ -260,7 +288,7 @@ extension BrowserTableViewController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? { // Swipe actions
         
-        let delete = UITableViewRowAction(style: .default, title: "Remove") { (UITableViewRowAction, IndexPath) in // Remove file
+        let delete = UITableViewRowAction(style: .default, title: "      ") { (UITableViewRowAction, IndexPath) in // Remove file
             
             do {
                 try FileManager.default.removeItem(atPath: self.dir+"/"+self.files[indexPath.row])
@@ -273,7 +301,7 @@ extension BrowserTableViewController {
             }
         }
         
-        let share = UITableViewRowAction(style: .default, title: "Share") { (UITableViewRowAction, IndexPath) in // Share file
+        let share = UITableViewRowAction(style: .normal, title: "      ") { (UITableViewRowAction, IndexPath) in // Share file
             let url = URL(string: ("file://"+self.dir+"/"+self.files[indexPath.row]).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
             
             let shareController = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
@@ -281,13 +309,17 @@ extension BrowserTableViewController {
             self.present(shareController, animated: true, completion: nil)
         }
         
-        let rename = UITableViewRowAction(style: .default, title: "Rename") { (UITableViewRowAction, IndexPath) in // Rename file
+        let rename = UITableViewRowAction(style: .normal, title: "      ") { (UITableViewRowAction, IndexPath) in // Rename file
             let url = URL(string: ("file://"+self.dir+"/"+self.files[indexPath.row]).addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
             
             self.renameAlert = UIAlertController(title: "Rename", message: "Select new file name", preferredStyle: .alert)
             self.renameAlert.addAction(UIAlertAction(title: "Rename", style: .default, handler: { (UIAlertAction) in
                 do {
-                    try FileManager.default.moveItem(at: url!, to: (url?.deletingLastPathComponent().appendingPathComponent((self.renameAlert.textFields?[0].text)!, isDirectory: false))!)
+                    if self.renameAlert.textFields?[1].text == "" {
+                        try FileManager.default.moveItem(at: url!, to: (url?.deletingLastPathComponent().appendingPathComponent((self.renameAlert.textFields?[0].text)!, isDirectory: false))!)
+                    } else {
+                        try FileManager.default.moveItem(at: url!, to: (url?.deletingLastPathComponent().appendingPathComponent(((self.renameAlert.textFields?[0].text)!+"."+(self.renameAlert.textFields?[1].text)!), isDirectory: false))!)
+                    }
                     self.nextDir = self.dir
                     print("SEGUE")
                     self.reload()
@@ -306,21 +338,30 @@ extension BrowserTableViewController {
                     print(url!)
                     print(url!.pathExtension)
                     print("file://"+self.dir+"/"+(self.renameAlert.textFields?[0].text)!.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
-                    UITextField.text = "."+url!.pathExtension
+                    UITextField.text = url?.deletingPathExtension().lastPathComponent
+                }
+            })
+            
+            self.renameAlert.addTextField(configurationHandler: { (UITextField) in
+                UITextField.placeholder = "File extension"
+                if url?.pathExtension != "" {
+                    print(url!)
+                    print(url!.pathExtension)
+                    print("file://"+self.dir+"/"+(self.renameAlert.textFields?[0].text)!.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)
+                    UITextField.text = url?.pathExtension
                 }
             })
             
             self.renameAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(self.renameAlert, animated: true, completion: nil)
-            Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false, block: { (Timer) in
-                self.presentRenameAlert()
-            })
+    
         }
         
         
         // Change buttons background color
-        share.backgroundColor = .green
-        rename.backgroundColor = .black
+        share.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "share"))
+        rename.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "edit"))
+        delete.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "delete"))
         
         return /*Show:*/[delete, rename, share]
     }

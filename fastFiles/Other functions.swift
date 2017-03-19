@@ -47,54 +47,117 @@ extension BrowserTableViewController {
         
         let addFile = UIAlertAction(title: "Add file", style: .default) { (UIAlertAction) in // Add file button
             
-            FileManager.default.createFile(atPath: self.dir+"/"+(alert.textFields?[0].text!)!, contents: nil, attributes: [:])
-            
-            
-            if !FileManager.default.fileExists(atPath: self.dir+"/"+(alert.textFields?[0].text!)!) {
-                let alert = UIAlertController(title: "Error!", message: "Unknown error", preferredStyle: .alert)
-                let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
+            if alert.textFields?[1].text != "" {
+                FileManager.default.createFile(atPath: self.dir+"/"+((alert.textFields?[0].text!)!+"."+(alert.textFields?[1].text!)!), contents: nil, attributes: [:])
+                if !FileManager.default.fileExists(atPath: self.dir+"/"+((alert.textFields?[0].text!)!+"."+(alert.textFields?[1].text!)!)) {
+                    let alert = UIAlertController(title: "Error!", message: "Unknown error", preferredStyle: .alert)
+                    let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.reload()
+                
+                    var file = URL(fileURLWithPath: self.dir)
+                
+                    file = file.appendingPathComponent(((alert.textFields?[0].text!)!+"."+alert.textFields![1].text!))
+                
+                
+                    let files = try! FileManager.default.contentsOfDirectory(atPath: self.dir)
+                    let nextFileIndex = files.index(of: file.lastPathComponent)
+                
+                    self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                        self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
+                    })
+                }
             } else {
-                self.reload()
-                
-                var file = URL(fileURLWithPath: self.dir)
-                file = file.appendingPathComponent((alert.textFields?[0].text!)!)
-                let files = try! FileManager.default.contentsOfDirectory(atPath: self.dir)
-                let nextFileIndex = files.index(of: file.lastPathComponent)
-                
-                self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
-                    self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
-                })
+                FileManager.default.createFile(atPath: self.dir+"/"+(alert.textFields?[0].text!)!, contents: nil, attributes: [:])
+                if !FileManager.default.fileExists(atPath: self.dir+"/"+(alert.textFields?[0].text!)!) {
+                    let alert = UIAlertController(title: "Error!", message: "Unknown error", preferredStyle: .alert)
+                    let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.reload()
+                    
+                    var file = URL(fileURLWithPath: self.dir)
+                    
+                    file = file.appendingPathComponent(((alert.textFields?[0].text!)!))
+                    
+                    
+                    let files = try! FileManager.default.contentsOfDirectory(atPath: self.dir)
+                    let nextFileIndex = files.index(of: file.lastPathComponent)
+                    
+                    self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                        self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
+                    })
+                }
             }
-            
         }
+        
         alert.addAction(addFile)
         
         let addFolder = UIAlertAction(title: "Add folder", style: .default) { (UIAlertAction) in // Add folder button
-            do {
-                try FileManager.default.createDirectory(atPath: self.dir+"/"+(alert.textFields?[0].text!)!, withIntermediateDirectories: true, attributes: [:])
-                
-                self.reload()
-                
-                var file = URL(fileURLWithPath: self.dir)
-                file = file.appendingPathComponent((alert.textFields?[0].text!)!)
-                let files = try! FileManager.default.contentsOfDirectory(atPath: self.dir)
-                let nextFileIndex = files.index(of: file.lastPathComponent)
-                
-                self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
-                Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
-                    self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
-                })
-                
-            }catch let error {
-                let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
-                let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
-                alert.addAction(ok)
-                self.present(alert, animated: true, completion: nil)
+            if alert.textFields?[1].text != "" {
+                do {
+                    try FileManager.default.createDirectory(atPath: self.dir+"/"+((alert.textFields?[0].text!)!+"."+(alert.textFields?[1].text!)!), withIntermediateDirectories: true, attributes: nil)
+                } catch let error {
+                    let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIKit.UIAlertAction(title:"Ok", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                if !FileManager.default.fileExists(atPath: self.dir+"/"+((alert.textFields?[0].text!)!+"."+(alert.textFields?[1].text!)!)) {
+                    let alert = UIAlertController(title: "Error!", message: "Unknown error", preferredStyle: .alert)
+                    let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.reload()
+                    
+                    var file = URL(fileURLWithPath: self.dir)
+                    
+                    file = file.appendingPathComponent(((alert.textFields?[0].text!)!+"."+alert.textFields![1].text!))
+                    
+                    
+                    let files = try! FileManager.default.contentsOfDirectory(atPath: self.dir)
+                    let nextFileIndex = files.index(of: file.lastPathComponent)
+                    
+                    self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                        self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
+                    })
+                }
+            } else {
+                do {
+                    try FileManager.default.createDirectory(atPath: URL(fileURLWithPath:self.dir+"/"+(alert.textFields?[0].text!)!).path, withIntermediateDirectories: true, attributes: nil)
+                } catch let error {
+                    let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                    alert.addAction(UIKit.UIAlertAction(title:"Ok", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                if !FileManager.default.fileExists(atPath: self.dir+"/"+(alert.textFields?[0].text!)!) {
+                    let alert = UIAlertController(title: "Error!", message: "Unknown error", preferredStyle: .alert)
+                    let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alert.addAction(ok)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    self.reload()
+                    
+                    var file = URL(fileURLWithPath: self.dir)
+                    
+                    file = file.appendingPathComponent(((alert.textFields?[0].text!)!))
+                    
+                    
+                    let files = try! FileManager.default.contentsOfDirectory(atPath: self.dir)
+                    let nextFileIndex = files.index(of: file.lastPathComponent)
+                    
+                    self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                        self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
+                    })
+                }
             }
-            
         }
         alert.addAction(addFolder)
         
@@ -113,6 +176,10 @@ extension BrowserTableViewController {
         
         alert.addTextField { (UITextField) in
             UITextField.placeholder = "File name"
+        }
+        
+        alert.addTextField { (UITextField) in
+            UITextField.placeholder = "File Extension"
         }
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -214,12 +281,6 @@ extension BrowserTableViewController {
             
             zip = false
         }
-    }
-    
-    
-    func presentRenameAlert() { // Correctly present alert to rename file or folder
-        print("PRESENT TEXTFIELD")
-        renameAlert.textFields?[0].selectedTextRange = renameAlert.textFields?[0].textRange(from: (renameAlert.textFields?[0].beginningOfDocument)!, to: (renameAlert.textFields?[0].beginningOfDocument)!)
     }
     
     

@@ -16,6 +16,8 @@ class TextViewController: UIViewController {
     @IBOutlet weak var text: UITextView!
     @IBOutlet weak var keyboard: UIBarButtonItem!
     
+    var isCode = false
+    
     
     // Actions
     
@@ -23,6 +25,7 @@ class TextViewController: UIViewController {
         if text.isFirstResponder {
             text.resignFirstResponder()
         }
+
     }
 
     @IBAction func save(_ sender: Any) { // Save file

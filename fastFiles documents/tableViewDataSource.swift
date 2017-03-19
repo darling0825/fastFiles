@@ -15,11 +15,17 @@ extension DocumentPickerViewController: UITableViewDataSource {
     
     @available(iOSApplicationExtension 2.0, *)
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { // Number of rows
-        
         let publicDocs = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.marcela.ada.files")!.appendingPathComponent("File Provider Storage")
-        self.docsContent = try! FileManager.default.contentsOfDirectory(at: publicDocs, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
+        let docs = try? FileManager.default.contentsOfDirectory(at: publicDocs, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
         
-        return self.docsContent.count
+        if docs! == docsContent! {
+            backButton.isEnabled = false
+        } else {
+            backButton.isEnabled = true
+        }
+        
+        return self.docsContent!.count
+        
     }
 
     @available(iOSApplicationExtension 2.0, *)
@@ -29,12 +35,18 @@ extension DocumentPickerViewController: UITableViewDataSource {
         let label:UILabel = cell?.viewWithTag(1) as! UILabel // Label
         let image:UIImageView = cell?.viewWithTag(2) as! UIImageView // Icon
         
-        label.text = docsContent[indexPath.row].lastPathComponent // Set label text
         label.font = labelFont // Set label font
         
+        var url: URL!
+        
+        label.text = docsContent?[indexPath.row].lastPathComponent // Set label text
+        url = self.docsContent?[indexPath.row]
+        
+        
+        
         var isDir: ObjCBool = false
-        let url = self.docsContent[indexPath.row]
-        if FileManager.default.fileExists(atPath: (self.docsContent[indexPath.row].absoluteString.removingPercentEncoding?.replacingOccurrences(of: "file://", with: ""))!, isDirectory: &isDir) { // Check if file exists
+        
+        if FileManager.default.fileExists(atPath: (self.docsContent?[indexPath.row].absoluteString.removingPercentEncoding?.replacingOccurrences(of: "file://", with: ""))!, isDirectory: &isDir) { // Check if file exists
             do {
                 if !isDir.boolValue { // Is file
                     if UIImage(data: try Data(contentsOf: url)) != nil { // Is image
@@ -49,10 +61,12 @@ extension DocumentPickerViewController: UITableViewDataSource {
                         image.image = #imageLiteral(resourceName: "zipFile.png")
                     } else if url.pathExtension.lowercased() == "swift" {
                         image.image = #imageLiteral(resourceName: "SwiftFile") // Is Swift
-                    } else if url.pathExtension.lowercased() == "m" && url.pathExtension.lowercased() == "mm" {
+                    } else if url.pathExtension.lowercased() == "m" || url.pathExtension.lowercased() == "mm" {
                         image.image = #imageLiteral(resourceName: "OBJCFile") // Is Objective-C
                     } else if url.pathExtension.lowercased() == "py" {
                         image.image = #imageLiteral(resourceName: "PYFile") // Is Python
+                    } else if url.pathExtension.lowercased() == "rtf" || url.pathExtension.lowercased() == "doc" || url.pathExtension.lowercased() == "docx" {
+                        image.image = #imageLiteral(resourceName: "rtfFile") // Is RTF or Word
                     } else if url.pathExtension.lowercased() == "icloud" {
                         image.image = #imageLiteral(resourceName: "iCloud-Drive") // Is undownloaded file
                         label.text?.remove(at: (label.text?.startIndex)!)

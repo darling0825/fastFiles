@@ -23,6 +23,7 @@ extension BrowserTableViewController {
             self.tableView.selectRow(at: IndexPath(row: nextSelectedRow[0], section: 0), animated: true, scrollPosition: UITableViewScrollPosition.middle)
             Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
                 self.tableView.deselectRow(at: IndexPath(row: self.nextSelectedRow[0], section: 0), animated: true)
+                self.tableView.delegate?.tableView!(self.tableView, didSelectRowAt: IndexPath(row: self.nextSelectedRow[0], section: 0))
                 self.nextSelectedRow = []
             })
         }

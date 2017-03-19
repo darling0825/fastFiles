@@ -53,5 +53,6 @@ extension DownloadViewController {
         
         blur.isHidden = true // Unblur
         
+        (view.viewWithTag(10) as! UIActivityIndicatorView).isHidden = true // Hide activity view
     }
 }

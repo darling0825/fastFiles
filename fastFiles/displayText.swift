@@ -16,8 +16,14 @@ import UIKit
 extension TextViewController {
     func displayText() {
         do {
-            let fileContent = try String(contentsOf: url)
-            text.text = fileContent
+            if url.pathExtension.lowercased() != "rtf" {
+                let fileContent = try String(contentsOf: url)
+                text.text = fileContent
+            } else { // Is RTF file
+                let attributedString = try NSAttributedString(url: url, options: [NSDocumentTypeDocumentAttribute:NSRTFTextDocumentType], documentAttributes: nil)
+                text.attributedText = attributedString
+                text.isEditable = false
+            }
         } catch let error {
             let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
@@ -28,9 +34,10 @@ extension TextViewController {
         }
     }
     
-    func keyboardWillShow(notification:NSNotification) {
+    func keyboardWillShow(_ notification:Notification) {
         let d = notification.userInfo!
         var r = d[UIKeyboardFrameEndUserInfoKey] as! CGRect
+        
         r = self.text.convert(r, from:nil)
         self.text.contentInset.bottom = r.size.height
         self.text.scrollIndicatorInsets.bottom = r.size.height
@@ -38,12 +45,9 @@ extension TextViewController {
         keyboard.isEnabled = true
     }
     
-    func keyboardWillHide(notification:NSNotification) {
-        let d = notification.userInfo!
-        var r = d[UIKeyboardFrameEndUserInfoKey] as! CGRect
-        r = self.text.convert(r, from:nil)
-        self.text.contentInset.bottom = r.size.height
-        self.text.scrollIndicatorInsets.bottom = r.size.height
+    func keyboardWillHide(_ notification:Notification) {        
+        self.text.contentInset = .zero
+        self.text.scrollIndicatorInsets = .zero
         
         keyboard.isEnabled = false
     }

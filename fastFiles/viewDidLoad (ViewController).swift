@@ -22,5 +22,10 @@ extension ViewController {
         // Open file if app is opened from URL
         NotificationCenter.default.addObserver(self, selector: #selector(openFromURL), name: NSNotification.Name(rawValue: "open"), object: nil)
 
+        // Touch ID
+        
+        if UserDefaults.standard.bool(forKey: "touchID") {
+            touchID()
+        }
     }
 }

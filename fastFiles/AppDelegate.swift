@@ -20,5 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var docsURL: URL!
 
     var player = AVPlayer()
+    
+    var docs = [URL]()
 }
 

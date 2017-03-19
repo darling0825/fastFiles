@@ -14,14 +14,104 @@ import Highlightr
                                 highlighting
  */
 
-extension TextViewController {
-    func highlight(language:String) {
-        let highlightr = Highlightr()
-        highlightr!.setTheme(to: "paraiso-dark")
-        let code = highlightr!.highlight(text.text, as: language, fastRender: true)
-        print(text.text)
+extension TextViewController: UITextViewDelegate {
+    func highlight(_ language:String, code:String) -> NSAttributedString? {
         
-        text.attributedText = code
-        text.backgroundColor = highlightr!.theme.themeBackgroundColor
+        var lang = language.lowercased()
+        
+        if language.lowercased() == "py" {
+            lang = "python"
+        }
+        
+        if language.lowercased() == "html" || language.lowercased() == "htm" || language.lowercased() == "php" {
+            lang = "htmlbars"
+        }
+        
+        if language.lowercased() == "m" || language.lowercased() == "mm" || language.lowercased() == "h" {
+            lang = "objectivec"
+        }
+        
+        if language.lowercased() == "sh" {
+            lang = "bash"
+        }
+        
+        if language.lowercased() == "js" {
+            lang = "javascript"
+        }
+        
+        if language.lowercased() == "md" {
+            lang = "markdown"
+        }
+        
+        for lang in (Highlightr()?.supportedLanguages())! {
+            if lang == url.pathExtension.lowercased() {
+                isCode = true
+            } else {
+                if lang == "python" {
+                    if "py" == url.pathExtension.lowercased() {
+                        isCode = true
+                    }
+                }
+                
+                if lang == "htmlbars" {
+                    if "html" == url.pathExtension.lowercased() || "htm" == url.pathExtension.lowercased() || "php" == url.pathExtension.lowercased() {
+                        isCode = true
+                    }
+                }
+                
+                if lang == "objectivec" {
+                    if "m" == url.pathExtension.lowercased() || "mm" == url.pathExtension.lowercased() || "h" == url.pathExtension.lowercased() {
+                        isCode = true
+                    }
+                }
+                
+                if lang == "bash" {
+                    if "sh" == url.pathExtension.lowercased() {
+                        isCode = true
+                    }
+                }
+                
+                if lang == "javascript" {
+                    if "js" == url.pathExtension.lowercased() {
+                        isCode = true
+                    }
+                }
+                
+                if lang == "markdown" {
+                    if "md" == url.pathExtension.lowercased() {
+                        isCode = true
+                    }
+                }
+            }
+        }
+        
+        if isCode {
+            let highlightr = Highlightr()
+            highlightr?.setTheme(to: "github-gist")
+            CodeToolBar()
+            self.text.autocorrectionType = .no
+            self.text.autocapitalizationType = .none
+            return (highlightr?.highlight(code, as: lang.lowercased(), fastRender: true))!
+        } else {
+            return nil
+        }
+        
     }
+    
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let code = self.highlight(self.url.pathExtension, code: self.text.text)
+        if code != nil {
+            
+            // set the new position
+            self.text.attributedText = code
+            self.text.selectedRange = range
+            
+        }
+        
+        return true
+        
+    }
+    
+    
 }

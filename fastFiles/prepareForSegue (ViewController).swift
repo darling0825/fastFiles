@@ -69,11 +69,13 @@ extension ViewController {
             }
         }
         
-        if segue.identifier == "highlightrLICENSE" { // Open Highlightr MIT License file
-            if let nextVC = segue.destination as? TextViewController {
-                nextVC.url = URL(fileURLWithPath: Bundle.main.path(forResource: "Highlightr", ofType: "")!).appendingPathComponent("index.txt")
+        if segue.identifier == "Licenses" { // Open Licenses file
+            if let nextVC = segue.destination as? BrowserTableViewController {
+                nextVC.dir = Bundle.main.path(forResource: "Licenses", ofType: "")!
             }
         }
+        
+
         
     }
 }
