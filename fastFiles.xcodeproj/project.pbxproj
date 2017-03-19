@@ -9,14 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A23ECA91E5C963600186360 /* DownloadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A23ECA81E5C963600186360 /* DownloadViewController.swift */; };
 		3A36E42A1E7D570D00D77993 /* iCloud (PDFViewController) .swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36E4291E7D570D00D77993 /* iCloud (PDFViewController) .swift */; };
-		3A36E4311E7D7A7300D77993 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A36E4301E7D7A7300D77993 /* Messages.framework */; };
-		3A36E4341E7D7A7300D77993 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36E4331E7D7A7300D77993 /* MessagesViewController.swift */; };
-		3A36E4371E7D7A7300D77993 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A36E4351E7D7A7300D77993 /* MainInterface.storyboard */; };
-		3A36E4391E7D7A7300D77993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A36E4381E7D7A7300D77993 /* Assets.xcassets */; };
-		3A36E43D1E7D7A7300D77993 /* Send file.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A36E42F1E7D7A7300D77993 /* Send file.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		3A36E4451E7D7D9300D77993 /* SendFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36E4441E7D7D9300D77993 /* SendFile.swift */; };
-		3A36E4471E7D7F9500D77993 /* tableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36E4461E7D7F9500D77993 /* tableViewDataSource.swift */; };
-		3A36E4491E7D7FAD00D77993 /* tableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A36E4481E7D7FAD00D77993 /* tableViewDelegate.swift */; };
 		3A3FAC8A1E5DCA06004075C1 /* MusicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3FAC891E5DCA06004075C1 /* MusicViewController.swift */; };
 		3A3FAC8C1E5E3007004075C1 /* Silence.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3A3FAC8B1E5E3007004075C1 /* Silence.mp3 */; };
 		3A3FAC8E1E5F175D004075C1 /* paste.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A3FAC8D1E5F175D004075C1 /* paste.png */; };
@@ -117,13 +109,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3A36E43B1E7D7A7300D77993 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3ADE02571E5B6F2C00F0DB3A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3A36E42E1E7D7A7300D77993;
-			remoteInfo = "Send file";
-		};
 		3A4A34181E7DBC8C0015CB97 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3ADE02571E5B6F2C00F0DB3A /* Project object */;
@@ -165,7 +150,6 @@
 				3AA166FC1E7EB5010080D35A /* fastFiles search.appex in Embed App Extensions */,
 				3A7203721E62521B00225ADE /* fastFiles documentsFileProvider.appex in Embed App Extensions */,
 				3A4A341A1E7DBC8C0015CB97 /* Files.appex in Embed App Extensions */,
-				3A36E43D1E7D7A7300D77993 /* Send file.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -188,16 +172,7 @@
 		3879E45784933AEB034A360D /* Pods_fastFiles_share.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_fastFiles_share.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A23ECA81E5C963600186360 /* DownloadViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadViewController.swift; sourceTree = "<group>"; };
 		3A36E4291E7D570D00D77993 /* iCloud (PDFViewController) .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "iCloud (PDFViewController) .swift"; sourceTree = "<group>"; };
-		3A36E42F1E7D7A7300D77993 /* Send file.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Send file.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A36E4301E7D7A7300D77993 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
-		3A36E4331E7D7A7300D77993 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
-		3A36E4361E7D7A7300D77993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
-		3A36E4381E7D7A7300D77993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3A36E43A1E7D7A7300D77993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3A36E4431E7D7D5F00D77993 /* Send file.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Send file.entitlements"; sourceTree = "<group>"; };
-		3A36E4441E7D7D9300D77993 /* SendFile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendFile.swift; sourceTree = "<group>"; };
-		3A36E4461E7D7F9500D77993 /* tableViewDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewDataSource.swift; sourceTree = "<group>"; };
-		3A36E4481E7D7FAD00D77993 /* tableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tableViewDelegate.swift; sourceTree = "<group>"; };
 		3A3FAC891E5DCA06004075C1 /* MusicViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicViewController.swift; sourceTree = "<group>"; };
 		3A3FAC8B1E5E3007004075C1 /* Silence.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Silence.mp3; sourceTree = "<group>"; };
 		3A3FAC8D1E5F175D004075C1 /* paste.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paste.png; sourceTree = "<group>"; };
@@ -316,14 +291,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3A36E42C1E7D7A7300D77993 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3A36E4311E7D7A7300D77993 /* Messages.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3A4A340B1E7DBC8C0015CB97 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -393,21 +360,6 @@
 				3A4A340F1E7DBC8C0015CB97 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3A36E4321E7D7A7300D77993 /* Send file */ = {
-			isa = PBXGroup;
-			children = (
-				3A36E4431E7D7D5F00D77993 /* Send file.entitlements */,
-				3A36E4331E7D7A7300D77993 /* MessagesViewController.swift */,
-				3A36E4441E7D7D9300D77993 /* SendFile.swift */,
-				3A36E4461E7D7F9500D77993 /* tableViewDataSource.swift */,
-				3A36E4481E7D7FAD00D77993 /* tableViewDelegate.swift */,
-				3A36E4351E7D7A7300D77993 /* MainInterface.storyboard */,
-				3A36E4381E7D7A7300D77993 /* Assets.xcassets */,
-				3A36E43A1E7D7A7300D77993 /* Info.plist */,
-			);
-			path = "Send file";
 			sourceTree = "<group>";
 		};
 		3A3FAC7C1E5DC7B8004075C1 /* Ressources */ = {
@@ -494,7 +446,6 @@
 				3ADE02611E5B6F2C00F0DB3A /* fastFiles */,
 				3A72035C1E62521B00225ADE /* fastFiles documents */,
 				3A72036A1E62521B00225ADE /* fastFiles documentsFileProvider */,
-				3A36E4321E7D7A7300D77993 /* Send file */,
 				3A4A34111E7DBC8C0015CB97 /* Files */,
 				3AA166F61E7EB5010080D35A /* fastFiles search */,
 				3ADE02601E5B6F2C00F0DB3A /* Products */,
@@ -509,7 +460,6 @@
 				3ADE025F1E5B6F2C00F0DB3A /* fastFiles.app */,
 				3A72035B1E62521A00225ADE /* fastFiles documents.appex */,
 				3A7203691E62521B00225ADE /* fastFiles documentsFileProvider.appex */,
-				3A36E42F1E7D7A7300D77993 /* Send file.appex */,
 				3A4A340E1E7DBC8C0015CB97 /* Files.appex */,
 				3AA166F51E7EB5010080D35A /* fastFiles search.appex */,
 			);
@@ -721,23 +671,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3A36E42E1E7D7A7300D77993 /* Send file */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3A36E43E1E7D7A7300D77993 /* Build configuration list for PBXNativeTarget "Send file" */;
-			buildPhases = (
-				3A36E42B1E7D7A7300D77993 /* Sources */,
-				3A36E42C1E7D7A7300D77993 /* Frameworks */,
-				3A36E42D1E7D7A7300D77993 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Send file";
-			productName = "Send file";
-			productReference = 3A36E42F1E7D7A7300D77993 /* Send file.appex */;
-			productType = "com.apple.product-type.app-extension.messages";
-		};
 		3A4A340D1E7DBC8C0015CB97 /* Files */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3A4A341D1E7DBC8C0015CB97 /* Build configuration list for PBXNativeTarget "Files" */;
@@ -828,7 +761,6 @@
 			dependencies = (
 				3A7203711E62521B00225ADE /* PBXTargetDependency */,
 				3A7203741E62521B00225ADE /* PBXTargetDependency */,
-				3A36E43C1E7D7A7300D77993 /* PBXTargetDependency */,
 				3A4A34191E7DBC8C0015CB97 /* PBXTargetDependency */,
 				3AA166FB1E7EB5010080D35A /* PBXTargetDependency */,
 			);
@@ -847,20 +779,6 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Adrian;
 				TargetAttributes = {
-					3A36E42E1E7D7A7300D77993 = {
-						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = Y96PL6G497;
-						LastSwiftMigration = 0830;
-						ProvisioningStyle = Automatic;
-						SystemCapabilities = {
-							com.apple.ApplicationGroups.iOS = {
-								enabled = 1;
-							};
-							com.apple.iCloud = {
-								enabled = 1;
-							};
-						};
-					};
 					3A4A340D1E7DBC8C0015CB97 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = Y96PL6G497;
@@ -949,7 +867,6 @@
 				3ADE025E1E5B6F2C00F0DB3A /* fastFiles */,
 				3A72035A1E62521A00225ADE /* fastFiles documents */,
 				3A7203681E62521B00225ADE /* fastFiles documentsFileProvider */,
-				3A36E42E1E7D7A7300D77993 /* Send file */,
 				3A4A340D1E7DBC8C0015CB97 /* Files */,
 				3AA166F41E7EB5010080D35A /* fastFiles search */,
 			);
@@ -957,15 +874,6 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3A36E42D1E7D7A7300D77993 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3A36E4391E7D7A7300D77993 /* Assets.xcassets in Resources */,
-				3A36E4371E7D7A7300D77993 /* MainInterface.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3A4A340C1E7DBC8C0015CB97 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1134,17 +1042,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3A36E42B1E7D7A7300D77993 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3A36E4491E7D7FAD00D77993 /* tableViewDelegate.swift in Sources */,
-				3A36E4341E7D7A7300D77993 /* MessagesViewController.swift in Sources */,
-				3A36E4451E7D7D9300D77993 /* SendFile.swift in Sources */,
-				3A36E4471E7D7F9500D77993 /* tableViewDataSource.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3A4A340A1E7DBC8C0015CB97 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1244,11 +1141,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3A36E43C1E7D7A7300D77993 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3A36E42E1E7D7A7300D77993 /* Send file */;
-			targetProxy = 3A36E43B1E7D7A7300D77993 /* PBXContainerItemProxy */;
-		};
 		3A4A34191E7DBC8C0015CB97 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3A4A340D1E7DBC8C0015CB97 /* Files */;
@@ -1272,14 +1164,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3A36E4351E7D7A7300D77993 /* MainInterface.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3A36E4361E7D7A7300D77993 /* Base */,
-			);
-			name = MainInterface.storyboard;
-			sourceTree = "<group>";
-		};
 		3A4A34141E7DBC8C0015CB97 /* MainInterface.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1315,42 +1199,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3A36E43F1E7D7A7300D77993 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessages App Icon";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "Send file/Send file.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y96PL6G497;
-				INFOPLIST_FILE = "Send file/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ch.marcela.ada.fastFiles.Send-file";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		3A36E4401E7D7A7300D77993 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessages App Icon";
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "Send file/Send file.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y96PL6G497;
-				INFOPLIST_FILE = "Send file/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "ch.marcela.ada.fastFiles.Send-file";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 		3A4A341B1E7DBC8C0015CB97 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1625,15 +1473,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3A36E43E1E7D7A7300D77993 /* Build configuration list for PBXNativeTarget "Send file" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3A36E43F1E7D7A7300D77993 /* Debug */,
-				3A36E4401E7D7A7300D77993 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		3A4A341D1E7DBC8C0015CB97 /* Build configuration list for PBXNativeTarget "Files" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
