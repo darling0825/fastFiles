@@ -26,8 +26,19 @@ extension TextViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        // Set text delegate
-        text.delegate = self
+        // Highlight code
+        let code = self.highlight(self.url.pathExtension, code: self.text.text)
+        if code != nil {
+            
+            self.text.attributedText = code
+            
+            Timer.scheduledTimer(withTimeInterval: TimeInterval(UserDefaults.standard.value(forKey: "Refresh") as! Int), repeats: true) { (Timer) in
+                let code = self.highlight(self.url.pathExtension, code: self.text.text)
+                self.text.attributedText = code
+            }
+            
+        }
+        
         
     }
     

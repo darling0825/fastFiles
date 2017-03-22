@@ -321,7 +321,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>Exception Domains</key>
 	<dict>
 		<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>

@@ -21,6 +21,10 @@ extension AppDelegate {
         
         index() // Index for spotlight
         
+        if UserDefaults.standard.value(forKey: "Refresh") == nil {
+            UserDefaults.standard.set(5,forKey: "Refresh")
+        }
+        
         UserDefaults.standard.synchronize() // Sync UserDefaults
         
         return true

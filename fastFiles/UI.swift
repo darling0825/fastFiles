@@ -44,11 +44,15 @@ extension BrowserTableViewController {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "file", for: indexPath) // Cell
         let labelFont = UIFont(name: "HelveticaNeue-Thin", size: 20.0) // Label font
-        let label:UILabel = cell.viewWithTag(2) as! UILabel // Label
+        let label:UILabel = cell.viewWithTag(2) as! UILabel // File name
+        let extensionLabel:UILabel = cell.viewWithTag(4) as! UILabel // File extension
         let image: UIImageView = cell.viewWithTag(3) as! UIImageView // Icon
         
         label.font = labelFont
-        label.text = files[indexPath.row]
+        label.text = URL(fileURLWithPath:dir+"/"+files[indexPath.row]).deletingPathExtension().lastPathComponent
+        
+        extensionLabel.font = labelFont
+        extensionLabel.text = URL(fileURLWithPath:dir+"/"+files[indexPath.row]).pathExtension
         
         cell.viewWithTag(5)?.isHidden = true
         
@@ -80,6 +84,7 @@ extension BrowserTableViewController {
                         cell.viewWithTag(5)?.isHidden = false
                         (cell.viewWithTag(5) as! UIActivityIndicatorView).startAnimating()
                         label.text?.remove(at: (label.text?.startIndex)!)
+                        extensionLabel.text = ""
                         label.text = label.text?.replacingOccurrences(of: "."+url.pathExtension, with: "")
                     } else {
                         do {

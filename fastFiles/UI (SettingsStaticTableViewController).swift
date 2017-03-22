@@ -20,5 +20,6 @@ extension SettingsStaticTableViewController {
         if tableView.cellForRow(at: indexPath)?.tag == 3 { // Open source code
             UIApplication.shared.open(URL(string:"https://github.com/ColdGrub1384/fastFiles")!)
         }
+        
     }
 }

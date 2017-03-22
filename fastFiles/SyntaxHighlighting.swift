@@ -14,7 +14,7 @@ import Highlightr
                                 highlighting
  */
 
-extension TextViewController: UITextViewDelegate {
+extension TextViewController {
     func highlight(_ language:String, code:String) -> NSAttributedString? {
         
         var lang = language.lowercased()
@@ -98,20 +98,6 @@ extension TextViewController: UITextViewDelegate {
         
     }
     
-
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        let code = self.highlight(self.url.pathExtension, code: self.text.text)
-        if code != nil {
-            
-            // set the new position
-            self.text.attributedText = code
-            self.text.selectedRange = range
-            
-        }
-        
-        return true
-        
-    }
     
     
 }
