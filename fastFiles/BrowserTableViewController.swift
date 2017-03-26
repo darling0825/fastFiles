@@ -33,5 +33,7 @@ class BrowserTableViewController: UITableViewController {
     
     @IBOutlet weak var Ad: GADBannerView!
     
+    var exportSession: AVAssetExportSession!
 
+    @IBOutlet weak var indexFile: UIWebView!
 }

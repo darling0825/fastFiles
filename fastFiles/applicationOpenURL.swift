@@ -36,8 +36,8 @@ extension AppDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let mainVC = storyboard.instantiateViewController(withIdentifier: "Main") as! UINavigationController
         if let presented = window?.rootViewController?.presentedViewController {
-            presented.dismiss(animated: true, completion: {
-                self.window?.rootViewController?.present(mainVC, animated: true, completion: {
+            presented.dismiss(animated: false, completion: {
+                self.window?.rootViewController?.present(mainVC, animated: false, completion: {
                     // Open directory
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "open"), object: nil)
                 })

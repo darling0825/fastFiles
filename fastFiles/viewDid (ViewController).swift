@@ -8,12 +8,14 @@
 
 import UIKit
 
+/*
+                                                        View
+                                                        did..
+ */
+
 extension ViewController {
     override func viewDidLoad() { // View did load
         super.viewDidLoad()
-        
-        // Set navigation bar style
-        setNavBarStyle()
         
         
         // Get device info
@@ -27,5 +29,19 @@ extension ViewController {
         if UserDefaults.standard.bool(forKey: "touchID") {
             touchID()
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) { // View did appear
+        super.viewDidAppear(false)
+        
+        // Config navigation bar
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) { // View will disapear
+        super.viewWillDisappear(false)
+        
+        // Config navigation bar
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 }

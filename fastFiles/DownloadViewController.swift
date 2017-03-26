@@ -97,7 +97,7 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
                 
                 print("DOWNLOAD!!!")
                 
-                let alert = UIAlertController(title: "\n\n\n\nDownloading", message: nil, preferredStyle: .alert)
+                let alert = UIAlertController(title: "\n\n\n\nDownloading".localized, message: nil, preferredStyle: .alert)
             
                 let indicator = UIActivityIndicatorView(frame: alert.view.bounds)
                 indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -155,12 +155,8 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         (view.viewWithTag(10) as! UIActivityIndicatorView).isHidden = true
-        if error.localizedDescription == "Frame load interrupted" { // Is downloadable file
+        if error.localizedDescription == "Frame load interrupted".localized { // Is downloadable file
             downloadFile(self)
-        } else {
-            let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
-            self.present(alert, animated: true, completion: nil)
         }
     }
     

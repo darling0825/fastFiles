@@ -35,6 +35,17 @@ extension AppDelegate {
         BrowserTableViewController().player.play()
         background = true
         index() // Index for spotlight
+        
+        // Blur snapchot
+        if UserDefaults.standard.bool(forKey: "touchID") {if UIApplication.shared.keyWindow?.viewWithTag(1) == nil {
+            let blur = UIVisualEffectView(frame: (window?.rootViewController?.view.frame)!)
+            blur.effect = UIBlurEffect(style: .light)
+            blur.tag = 1
+        
+            UIApplication.shared.keyWindow?.addSubview(blur)
+        } else {
+            UIApplication.shared.keyWindow?.viewWithTag(1)?.isHidden = false
+        }}
     }
     
     // Application did enter background
@@ -47,7 +58,7 @@ extension AppDelegate {
     // Application Will Enter Foreground
     func applicationWillEnterForeground(_ application: UIApplication) {
         BrowserTableViewController().player.play()
-        background = true
+        background = false
         index() // Index for spotlight
     }
     
@@ -55,6 +66,9 @@ extension AppDelegate {
     func applicationDidBecomeActive(_ application: UIApplication) {
         background = false
         index() // Index for spotlight
+        
+        // Remove blur effect
+        UIApplication.shared.keyWindow?.viewWithTag(1)?.isHidden = true
     }
     
     // Application will terminate

@@ -55,7 +55,7 @@ extension DocumentPickerViewController: UITableViewDataSource {
                         image.image = #imageLiteral(resourceName: "audioVideo.png")
                     } else if url.pathExtension.lowercased() == "pdf" { // Is pdf
                         image.image = #imageLiteral(resourceName: "pdf.png")
-                    }else if url.pathExtension.lowercased() == "html" { // Is HTML
+                    }else if url.pathExtension.lowercased() == "html" || url.pathExtension.lowercased() == "md" { // Is HTML
                         image.image = #imageLiteral(resourceName: "html.png")
                     } else if url.pathExtension.lowercased() == "zip" { // Is zip
                         image.image = #imageLiteral(resourceName: "zipFile.png")

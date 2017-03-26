@@ -21,7 +21,7 @@ extension BrowserTableViewController {
             files = try FileManager.default.contentsOfDirectory(atPath: dir)
             print(files)
         } catch let error {
-            let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
                 _ = self.navigationController?.popViewController(animated: true)
                 
@@ -38,19 +38,28 @@ extension BrowserTableViewController {
         if URL(fileURLWithPath: dir) == App().iCloudDrive() {
             self.title = "iCloud"
         }
+        
+        // Load README.md or index.html
+        indexFile.isHidden = true
+        
+        showIndexFile()
+        
+        if indexFile.isHidden {
+            tableView.contentSize.height -= indexFile.frame.size.height
+        }
     }
     
     
     func Add() { // Add file or directory
-        let alert = UIAlertController(title: "Create a file / directory", message: "Please select a file name", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Create a file / directory".localized, message: "Please select a file name".localized, preferredStyle: .alert)
         
         
-        let addFile = UIAlertAction(title: "Add file", style: .default) { (UIAlertAction) in // Add file button
+        let addFile = UIAlertAction(title: "Add file".localized, style: .default) { (UIAlertAction) in // Add file button
             
             if alert.textFields?[1].text != "" {
                 FileManager.default.createFile(atPath: self.dir+"/"+((alert.textFields?[0].text!)!+"."+(alert.textFields?[1].text!)!), contents: nil, attributes: [:])
                 if !FileManager.default.fileExists(atPath: self.dir+"/"+((alert.textFields?[0].text!)!+"."+(alert.textFields?[1].text!)!)) {
-                    let alert = UIAlertController(title: "Error!", message: "Unknown error", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error!".localized, message: "Unknown error".localized, preferredStyle: .alert)
                     let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
@@ -73,7 +82,7 @@ extension BrowserTableViewController {
             } else {
                 FileManager.default.createFile(atPath: self.dir+"/"+(alert.textFields?[0].text!)!, contents: nil, attributes: [:])
                 if !FileManager.default.fileExists(atPath: self.dir+"/"+(alert.textFields?[0].text!)!) {
-                    let alert = UIAlertController(title: "Error!", message: "Unknown error", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error!".localized, message: "Unknown error".localized, preferredStyle: .alert)
                     let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
@@ -98,17 +107,17 @@ extension BrowserTableViewController {
         
         alert.addAction(addFile)
         
-        let addFolder = UIAlertAction(title: "Add folder", style: .default) { (UIAlertAction) in // Add folder button
+        let addFolder = UIAlertAction(title: "Add folder".localized, style: .default) { (UIAlertAction) in // Add folder button
             if alert.textFields?[1].text != "" {
                 do {
                     try FileManager.default.createDirectory(atPath: self.dir+"/"+((alert.textFields?[0].text!)!+"."+(alert.textFields?[1].text!)!), withIntermediateDirectories: true, attributes: nil)
                 } catch let error {
-                    let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIKit.UIAlertAction(title:"Ok", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
                 if !FileManager.default.fileExists(atPath: self.dir+"/"+((alert.textFields?[0].text!)!+"."+(alert.textFields?[1].text!)!)) {
-                    let alert = UIAlertController(title: "Error!", message: "Unknown error", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error!".localized, message: "Unknown error".localized, preferredStyle: .alert)
                     let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
@@ -132,12 +141,12 @@ extension BrowserTableViewController {
                 do {
                     try FileManager.default.createDirectory(atPath: URL(fileURLWithPath:self.dir+"/"+(alert.textFields?[0].text!)!).path, withIntermediateDirectories: true, attributes: nil)
                 } catch let error {
-                    let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
                     alert.addAction(UIKit.UIAlertAction(title:"Ok", style: .default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
                 if !FileManager.default.fileExists(atPath: self.dir+"/"+(alert.textFields?[0].text!)!) {
-                    let alert = UIAlertController(title: "Error!", message: "Unknown error", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error!".localized, message: "Unknown error".localized, preferredStyle: .alert)
                     let ok = UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil)
                     alert.addAction(ok)
                     self.present(alert, animated: true, completion: nil)
@@ -162,7 +171,7 @@ extension BrowserTableViewController {
         alert.addAction(addFolder)
         
         
-        let importFile = UIAlertAction(title: "Import", style: .default) { (UIAlertAction) in // Import file button
+        let importFile = UIAlertAction(title: "Import".localized, style: .default) { (UIAlertAction) in // Import file button
             DispatchQueue.global(qos: .background).async {
                 let documentPicker = UIDocumentPickerViewController(documentTypes: App().allowedUTIs(), in: UIDocumentPickerMode.import)
                 documentPicker.delegate = self
@@ -174,15 +183,24 @@ extension BrowserTableViewController {
 
         alert.addAction(importFile)
         
+        let importImage = UIAlertAction(title: "Import image".localized, style: .default) { (UIAlertAction) in // Import file button
+            DispatchQueue.global(qos: .background).async {
+                self.pickImage()
+            }
+        }
+        
+        
+        alert.addAction(importImage)
+        
         alert.addTextField { (UITextField) in
-            UITextField.placeholder = "File name"
+            UITextField.placeholder = "File name".localized
         }
         
         alert.addTextField { (UITextField) in
-            UITextField.placeholder = "File Extension"
+            UITextField.placeholder = "File Extension".localized
         }
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
         
@@ -194,7 +212,7 @@ extension BrowserTableViewController {
         if !zip { // Check if app is not already requesting for zip files
             zip = true
             
-            let alert = UIAlertController(title: "Please select files to compress", message: "", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Please select files to compress".localized, message: "", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             
@@ -214,8 +232,8 @@ extension BrowserTableViewController {
             
             let filesList = filesName.joined(separator: "\n")
             
-            let createAlert = UIAlertController(title: "Compress", message: "\(filesList)", preferredStyle: .alert)
-            createAlert.addAction(UIAlertAction(title: "Create", style: .default, handler: { (UIAlertAction) in
+            let createAlert = UIAlertController(title: "Compress".localized, message: "\(filesList)", preferredStyle: .alert)
+            createAlert.addAction(UIAlertAction(title: "Create".localized, style: .default, handler: { (UIAlertAction) in
                 do {
                     print("ZIP TO CREATE: \n"+self.dir+"/"+(createAlert.textFields?[0].text)!)
                     try FileManager.default.createDirectory(atPath: self.dir+"/"+(createAlert.textFields?[0].text)!, withIntermediateDirectories: true, attributes: [:])
@@ -229,7 +247,7 @@ extension BrowserTableViewController {
                     }
                     
                     
-                    let alert = UIAlertController(title: "\n\n\n\nCompressing", message: nil, preferredStyle: .alert)
+                    let alert = UIAlertController(title: "\n\n\n\nCompressing".localized, message: nil, preferredStyle: .alert)
                     
                     let indicator = UIActivityIndicatorView(frame: alert.view.bounds)
                     indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -266,15 +284,15 @@ extension BrowserTableViewController {
                     
                 } catch let error {
                     self.dismiss(animated: true, completion: {
-                        let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                        let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
                         alert.addAction(UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil))
                     })
                 }
             }))
             
-            createAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            createAlert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil))
             createAlert.addTextField(configurationHandler: { (UITextField) in
-                UITextField.placeholder = "New file name (without extension)"
+                UITextField.placeholder = "New file name (without extension)".localized
             })
             
             self.present(createAlert, animated: true, completion: nil)
@@ -294,7 +312,7 @@ extension BrowserTableViewController {
             do {
                 try FileManager.default.copyItem(atPath: path, toPath: dir+"/"+(URL(string:"file://"+path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)?.lastPathComponent)!)
             } catch let error {
-                let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
@@ -303,7 +321,7 @@ extension BrowserTableViewController {
             do {
                 try FileManager.default.moveItem(atPath: path, toPath: dir+"/"+(URL(string:"file://"+path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)?.lastPathComponent)!)
             } catch let error {
-                let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }

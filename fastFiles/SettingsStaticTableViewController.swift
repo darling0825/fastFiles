@@ -12,17 +12,13 @@ class SettingsStaticTableViewController: UITableViewController, UITextFieldDeleg
     
     @IBOutlet weak var touchID: UISwitch!
     @IBOutlet weak var sec: UITextField!
-    @IBOutlet weak var doneBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         touchID.isOn = UserDefaults.standard.bool(forKey: "touchID")
         sec.text = "\(UserDefaults.standard.value(forKey: "Refresh")!)"
-        
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (Timer) in
-            self.doneBtn.isEnabled = self.sec.isFirstResponder
-        }
+        sec.delegate = self
     }
     
     @IBAction func enableTouchID(_ sender: Any) {
@@ -30,7 +26,7 @@ class SettingsStaticTableViewController: UITableViewController, UITextFieldDeleg
     }
     
     
-    @IBAction func done(_ sender: Any) {
+    func done() {
         let int = Int(sec.text!)
         
         if int == nil {
@@ -38,23 +34,31 @@ class SettingsStaticTableViewController: UITableViewController, UITextFieldDeleg
         }
         
         if int! < 3 {
-            let alert = UIAlertController(title: "Continue", message: "Are you sure to set refresh time to \(int!) seconds? \nIt will be lagged!", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (UIAlertAction) in
+            let alert = UIAlertController(title: "Continue".localized, message: String.localizedStringWithFormat("Are you sure to set refresh time to %d seconds? \nIt will be lagged!".localized,int!), preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel, handler: { (UIAlertAction) in
                 self.sec.text = "\(UserDefaults.standard.value(forKey: "Refresh")!)"
             }))
-            alert.addAction(UIAlertAction(title: "Continue", style: .destructive, handler: { (UIAlertAction) in
+            alert.addAction(UIAlertAction(title: "Continue".localized, style: .destructive, handler: { (UIAlertAction) in
                 UserDefaults.standard.set(int, forKey: "Refresh")
                 UserDefaults.standard.synchronize()
                 self.sec.resignFirstResponder()
             }))
             
             self.present(alert, animated: true, completion: nil)
-        } else if int! >= 5 {
+        } else {
             UserDefaults.standard.set(int, forKey: "Refresh")
             UserDefaults.standard.synchronize()
             sec.resignFirstResponder()
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        let doneBtn = UIBarButtonItem(image: #imageLiteral(resourceName: "keyboard"), style: .done, target: self, action: #selector(done))
+        toolbar.items = [doneBtn]
+        
+        textField.inputAccessoryView = toolbar
+        
+    }
     
 }

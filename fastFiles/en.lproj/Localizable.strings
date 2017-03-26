@@ -1,0 +1,43 @@
+/*
+ Localizable.strings
+ fastFiles
+ 
+ Created by Adrian on 24.03.17.
+ Copyright © 2017 Adrian. All rights reserved.
+ */
+
+"Error" = "Error!";
+"Login to iCloud if you want to use this feature" = "Login to iCloud if you want to use this feature";
+"Create a file / directory" = "Create a file / directory";
+"Please select a file name" = "Please select a file name";
+"Unknown error" = "Unknown error";
+"Add folder" = "Add folder";
+"Add file" = "Add file";
+"File name" = "File name";
+"File extension" = "File extension";
+"Cancel" = "Cancel";
+"Please select files to compress" = "Please select files to compress";
+"Compress" = "Compress";
+"Create" = "Create";
+"\n\n\n\nCompressing" = "\n\n\n\nCompressing";
+"New file name (without extension)" = "New file name (without extension)";
+"Open with..." = "Open with...";
+"Do you want to open this file as audio or video? (2 choices are correct)" = "Do you want to open this file as audio or video? (2 choices are correct)";
+"As Audio" = "As Audio";
+"As Video" = "As Video";
+"Import" = "Import";
+"File Extension" = "File Extension";
+"Frame load interrupted" = "Frame load interrupted";
+"Are you sure to set refresh time to %d seconds? \nIt will be lagged!" = "Are you sure to set refresh time to %d seconds? \nIt will be lagged!";
+"Continue" = "Continue";
+"Import image" = "Import image / video";
+"Select image name" = "Select image name";
+"Select video name" = "Select video name";
+"\n\n\n\nDownloading" = "\n\n\n\nDownloading";
+"/help" = "/enHelp.html";
+"Are you the owner of this device?" = "Are you the owner of this device?";
+"Error during verification" = "Error during verification";
+"Do you want to update the source code, or open the latest downloaded version?" = "Do you want to update the source code, or open the latest downloaded version?";
+"Source code" = "Source code";
+"Don't update" = "Don't update";
+"Update" = "Update";

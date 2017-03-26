@@ -18,7 +18,6 @@ extension ImageViewController {
         do {
             let data = try Data(contentsOf: url!)
             image.image = UIImage(data: data)
-            
         } catch let error {
             let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in

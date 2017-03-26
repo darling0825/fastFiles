@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 extension SettingsStaticTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -18,7 +19,9 @@ extension SettingsStaticTableViewController {
         }
         
         if tableView.cellForRow(at: indexPath)?.tag == 3 { // Open source code
-            UIApplication.shared.open(URL(string:"https://github.com/ColdGrub1384/fastFiles")!)
+            
+            let safari = SFSafariViewController(url: URL(string:"https://github.com/ColdGrub1384/fastFiles")!)
+            self.present(safari, animated: true, completion: nil)
         }
         
     }

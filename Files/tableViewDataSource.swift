@@ -47,19 +47,19 @@ extension TodayViewController: UITableViewDataSource {
                         image.image = #imageLiteral(resourceName: "image.png")
                     } else if (try? AVAudioPlayer(contentsOf: url)) != nil { // Is audio or video
                         image.image = #imageLiteral(resourceName: "audioVideo.png")
-                    } else if url.pathExtension.lowercased() == "pdf" { // Is pdf
+                    } else if url.absoluteString.lowercased().hasSuffix("pdf") { // Is pdf
                         image.image = #imageLiteral(resourceName: "pdf.png")
-                    }else if url.pathExtension.lowercased() == "html" { // Is HTML
+                    }else if url.absoluteString.lowercased().hasSuffix("html") || url.absoluteString.lowercased().hasSuffix("md") { // Is HTML
                         image.image = #imageLiteral(resourceName: "html.png")
-                    } else if url.pathExtension.lowercased() == "zip" { // Is zip
+                    } else if url.absoluteString.lowercased().hasSuffix("zip") { // Is zip
                         image.image = #imageLiteral(resourceName: "zipFile.png")
-                    } else if url.pathExtension.lowercased() == "swift" {
+                    } else if url.absoluteString.lowercased().hasSuffix("swift") {
                         image.image = #imageLiteral(resourceName: "SwiftFile") // Is Swift
-                    } else if url.pathExtension.lowercased() == "m" || url.pathExtension.lowercased() == "mm" {
+                    } else if url.absoluteString.lowercased().hasSuffix("m") || url.absoluteString.lowercased().hasSuffix("mm") {
                         image.image = #imageLiteral(resourceName: "OBJCFile") // Is Objective-C
-                    } else if url.pathExtension.lowercased() == "py" {
+                    } else if url.absoluteString.lowercased().hasSuffix("py") {
                         image.image = #imageLiteral(resourceName: "PYFile") // Is Python
-                    } else if  url.pathExtension.lowercased() == "rtf" || url.pathExtension.lowercased() == "doc" || url.pathExtension.lowercased() == "docx" {
+                    } else if url.absoluteString.lowercased().hasSuffix("rtf") || url.absoluteString.lowercased().hasSuffix("doc") || url.absoluteString.lowercased().hasSuffix("docx") {
                         image.image = #imageLiteral(resourceName: "rtfFile") // Is RTF or Word
                     } else if url.pathExtension.lowercased() == "icloud" {
                         image.image = #imageLiteral(resourceName: "iCloud-Drive") // Is undownloaded file
@@ -84,7 +84,7 @@ extension TodayViewController: UITableViewDataSource {
         }
         
         if image.image == nil { // Is iCloud file
-            image.image = #imageLiteral(resourceName: "iCloud")
+            image.image = #imageLiteral(resourceName: "file")
         }
         
         return cell!

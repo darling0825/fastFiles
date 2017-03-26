@@ -54,11 +54,24 @@ class App {
         }
     }
     
+    var libraryPath: String {
+        return NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0]
+    }
+    
+    var libraryURL: URL {
+        return URL(fileURLWithPath:NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0])
+    }
 }
 
 extension URL {
     var urlScheme: URL {
         
         return URL(string:self.absoluteString.replacingOccurrences(of: "file://", with: "files://"))!
+    }
+}
+
+extension String {
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
     }
 }

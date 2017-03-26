@@ -26,6 +26,5 @@ extension ImageViewController {
         
         self.title = url!.lastPathComponent // Set title
         
-        
     }
 }

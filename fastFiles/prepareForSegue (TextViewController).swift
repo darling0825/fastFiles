@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Down
 
 /*
                                                       Run
@@ -21,9 +22,15 @@ extension TextViewController {
         if segue.identifier == "HTML" {
             print("Identifier is HTML")
             if let nextVC = segue.destination as? HTMLViewController {
-                print("Set values")
                 nextVC.code = text.text!
-                print("CODE: "+text.text)
+                
+                if url.pathExtension == "md" {
+                    do {
+                        nextVC.code = try Down(markdownString: text.text).toHTML()
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+                }
                 nextVC.file = url
             }
         }

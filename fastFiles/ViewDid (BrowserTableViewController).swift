@@ -53,6 +53,9 @@ extension BrowserTableViewController {
             
         }
         
+        
+        reload()
+        
     }
     
     // and...
@@ -71,13 +74,13 @@ extension BrowserTableViewController {
             print(files)
         } catch let error {
             if self.dir != "/iCloud" {
-                let alert = UIAlertController(title: "Error!", message: error.localizedDescription, preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
                     _ = self.navigationController?.popViewController(animated: true)
                 }))
                 self.present(alert, animated: true, completion: nil)
             } else {
-                let alert = UIAlertController(title: "Error!", message: "Login to iCloud if you want to use this feature", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error!".localized, message: "Login to iCloud if you want to use this feature".localized, preferredStyle: .alert)
     
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
                     _ = self.navigationController?.popViewController(animated: true)

@@ -89,7 +89,7 @@ extension MusicViewController {
             self.musicTitle.text = _title
             if artist != "" {
                 print(artist)
-                self.musicTitle.text = self.musicTitle.text+" by "+artist
+                self.musicTitle.text = self.musicTitle.text+", "+artist
             }
         } else {
             print("HAS NO TITLE")

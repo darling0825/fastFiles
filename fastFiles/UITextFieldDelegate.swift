@@ -17,7 +17,7 @@ extension DownloadViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-        if textField.placeholder == "URL" { // Load URL
+        if textField.tag == 1 { // Load URL
             if !(textField.text?.hasPrefix("http://"))! && !(textField.text?.hasPrefix("https://"))! {
                 textField.text = "http://"+textField.text!
             }
@@ -25,11 +25,11 @@ extension DownloadViewController: UITextFieldDelegate {
             if url != nil{
                 webView.loadRequest(URLRequest(url: url!))
             } else {
-                let alert = UIAlertController(title: "Error!", message: "Invalid URL!\nMake sure to add http:// or https://", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error!", message: "Invalid URL!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
             }
-        } else if textField.placeholder == "Search" { // Google
+        } else if textField.tag == 2 { // Google
             let urlString = "https://www.google.com/search?q=\(textField.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
             print(urlString)
             let google = URL(string:urlString)

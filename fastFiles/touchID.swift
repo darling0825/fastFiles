@@ -19,13 +19,15 @@ extension ViewController {
         var error: NSError?
         
         if context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthentication, error: &error) {
-            context.evaluatePolicy(LAPolicy.deviceOwnerAuthentication, localizedReason: "Are you the owner of this device?", reply: { (success, error) in
+            context.evaluatePolicy(LAPolicy.deviceOwnerAuthentication, localizedReason: "Are you the owner of this device?".localized, reply: { (success, error) in
                 if !success {
-                    let alert = UIAlertController(title: "Error!", message: "Error during verification ", preferredStyle: .alert)
+                    let alert = UIAlertController(title: "Error!".localized, message: "Error during verification".localized, preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
                         exit(0)
                     }))
                     self.present(alert, animated: true, completion: nil)
+                } else {
+                    UserDefaults.standard.set(true, forKey: "secondTime")
                 }
             })
         }

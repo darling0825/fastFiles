@@ -29,27 +29,33 @@ extension TextViewController {
         // Highlight code
         let code = self.highlight(self.url.pathExtension, code: self.text.text)
         if code != nil {
-            
-            self.text.attributedText = code
-            
             Timer.scheduledTimer(withTimeInterval: TimeInterval(UserDefaults.standard.value(forKey: "Refresh") as! Int), repeats: true) { (Timer) in
                 let code = self.highlight(self.url.pathExtension, code: self.text.text)
-                self.text.attributedText = code
+                if code != nil {
+                    let cursorPos = self.text.selectedTextRange
+                    self.text.attributedText = code?["Code"] as! NSAttributedString
+                    self.text.selectedTextRange = cursorPos
+                }
             }
-            
         }
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(false)
         
         // Syntax Highlighting
+        
+        htmlToolbar.isHidden = true
+        
         let code = highlight(url.pathExtension, code: text.text)
         if code != nil {
-            text.attributedText = code
+            text.attributedText = code?["Code"] as! NSAttributedString
+            
+            if (code?["Language"] as! String) == "htmlbars" || (code?["Language"] as! String) == "markdown" {
+                htmlToolbar.isHidden = false
+            }
         }
+        
     }
 
 

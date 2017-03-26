@@ -27,6 +27,12 @@ extension ViewController {
             }
         }
         
+        if segue.identifier == "sourceCode" { // open source code
+            if let nextVC = segue.destination as? BrowserTableViewController {
+                nextVC.dir = App().libraryURL.appendingPathComponent("fastFiles").appendingPathComponent("fastFiles-master").path
+            }
+        }
+        
         if segue.identifier == "audio" { // open audio
             if let nextVC = segue.destination as? MusicViewController {
                 nextVC.url = imageURL!
@@ -53,9 +59,9 @@ extension ViewController {
 
         if segue.identifier == "showHelp" { // open Help
             if let nextVC = segue.destination as? HTMLViewController {
-                let code = try! String(contentsOfFile: Bundle.main.path(forResource: "Instructions", ofType: "")!+"/index.html")
+                let code = try! String(contentsOfFile: Bundle.main.path(forResource: "Instructions", ofType: "")!+"/help".localized)
                 nextVC.code = code
-                nextVC.file = URL(fileURLWithPath: Bundle.main.path(forResource: "Instructions", ofType: "")!+"/index.html")
+                nextVC.file = URL(fileURLWithPath: Bundle.main.path(forResource: "Instructions", ofType: "")!+"/help".localized)
             }
         }
         

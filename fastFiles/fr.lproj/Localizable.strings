@@ -1,0 +1,43 @@
+/* 
+  Localizable.strings
+  fastFiles
+
+  Created by Adrian on 24.03.17.
+  Copyright © 2017 Adrian. All rights reserved.
+*/
+
+"Error!" = "Erreur!";
+"Login to iCloud if you want to use this feature" = "Veuillez vous connectez à iCloud pour utiliser cette fonctionalité.";
+"Create a file / directory" = "Créer un fichier / dossier";
+"Please select a file name" = "Séléctionnez le nom du fichier";
+"Unknown error" = "Erreur iconnue";
+"Add folder" = "Créer le dossier";
+"Add file" = "Créer le fichier";
+"File name" = "Nom du fichier";
+"File extension" = "Extention du fichier";
+"Cancel" = "Annuler";
+"Please select files to compress" = "Sélectionnez les fichiers à compresser";
+"Compress" = "Compresser";
+"Create" = "Créer";
+"\n\n\n\nCompressing" = "\n\n\n\nComprimage en cours";
+"New file name (without extension)" = "Nouveau nom (sans extention)";
+"Open with..." = "Ouvrir avec...";
+"Do you want to open this file as audio or video? (2 choices are correct)" = "Voulez-vouz ouvrir le fichier comme un audio ou une vidéo? (les 2 choix sont correctes)";
+"As Audio" = "Comme Audio";
+"As Video" = "Comme Vidéo";
+"Import" = "Importer";
+"File Extension" = "Extention du fichier";
+"Frame load interrupted" = "Chargement du cadre interrompu";
+"Are you sure to set refresh time to %d seconds? \nIt will be lagged!" = "Êtes vous sûre de définir le rafraîchissement du code à %d secondes\nCe sera laggé!";
+"Continue" = "Continuer";
+"Import image" = "Importer une image / video";
+"Select image name" = "Selectionnez le nom de l'image";
+"Select video name" = "Selectionnez le nom de la vidéo";
+"\n\n\n\nDownloading" = "\n\n\n\nTéléchargement";
+"/help" = "/frHelp.html";
+"Are you the owner of this device?" = "Êtes vous le propriètaire de cet appareil?";
+"Error during verification" = "Erreur pendant la vérification!";
+"Do you want to update the source code, or open the latest downloaded version?" = "Voulez-vous mettre à jour le code source ou ouvrir la dernière version téléchargée?";
+"Source code" = "Code source";
+"Don't update" = "Ne pas mettre à jour";
+"Update" = "Mettre à jour";

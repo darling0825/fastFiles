@@ -14,6 +14,9 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
     
     // Variables
     
+    var terminationStatus = ""
+    
+    var finalDest: URL!
     
     @IBOutlet weak var deviceInfo: UILabel!
     var player = AVPlayer()
@@ -21,10 +24,6 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
     
     
     // Actions
-    
-    @IBAction func Documents(_ sender: Any) {
-        self.performSegue(withIdentifier: "Docs", sender: nil)
-    }
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none

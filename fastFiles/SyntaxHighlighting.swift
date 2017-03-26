@@ -15,7 +15,7 @@ import Highlightr
  */
 
 extension TextViewController {
-    func highlight(_ language:String, code:String) -> NSAttributedString? {
+    func highlight(_ language:String, code:String) -> [String:Any]? {
         
         var lang = language.lowercased()
         
@@ -41,6 +41,10 @@ extension TextViewController {
         
         if language.lowercased() == "md" {
             lang = "markdown"
+        }
+        
+        if language.lowercased() == "plist" {
+            lang = "xml"
         }
         
         for lang in (Highlightr()?.supportedLanguages())! {
@@ -82,6 +86,12 @@ extension TextViewController {
                         isCode = true
                     }
                 }
+                
+                if lang == "xml" {
+                    if "plist" == url.pathExtension.lowercased() {
+                        isCode = true
+                    }
+                }
             }
         }
         
@@ -91,7 +101,7 @@ extension TextViewController {
             CodeToolBar()
             self.text.autocorrectionType = .no
             self.text.autocapitalizationType = .none
-            return (highlightr?.highlight(code, as: lang.lowercased(), fastRender: true))!
+            return ["Code":(highlightr?.highlight(code, as: lang.lowercased(), fastRender: true))!, "Language":lang]
         } else {
             return nil
         }

@@ -15,6 +15,7 @@ class TextViewController: UIViewController {
     var url: URL!
     @IBOutlet weak var text: UITextView!
     @IBOutlet weak var keyboard: UIBarButtonItem!
+    @IBOutlet weak var htmlToolbar: UIToolbar!
     
     var isCode = false
     

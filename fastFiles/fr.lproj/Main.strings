@@ -1,0 +1,111 @@
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "08z-vX-PBj"; */
+"08z-vX-PBj.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "text"; ObjectID = "0mc-ma-Ple"; */
+"0mc-ma-Ple.text" = "text";
+
+/* Class = "UILabel"; text = "txt"; ObjectID = "67E-cL-wMg"; */
+"67E-cL-wMg.text" = "txt";
+
+/* Class = "UILabel"; text = "Source code"; ObjectID = "6Ab-05-wcm"; */
+"6Ab-05-wcm.text" = "Code source";
+
+/* Class = "UINavigationItem"; title = "Download file"; ObjectID = "6s7-OI-RCc"; */
+"6s7-OI-RCc.title" = "Télécharger";
+
+/* Class = "UITextField"; placeholder = "Custom file name (without extension)"; ObjectID = "9Tl-rl-KS7"; */
+"9Tl-rl-KS7.placeholder" = "Nom du fichier (sans extention)";
+
+/* Class = "UILabel"; text = "Open source licenses"; ObjectID = "9xl-O9-qbV"; */
+"9xl-O9-qbV.text" = "Licenses open source";
+
+/* Class = "UINavigationItem"; title = "file"; ObjectID = "ACm-n9-qU4"; */
+"ACm-n9-qU4.title" = "file";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "BBR-4K-UCa"; */
+"BBR-4K-UCa.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "image.png"; ObjectID = "Bdr-Zk-lbJ"; */
+"Bdr-Zk-lbJ.title" = "image.png";
+
+/* Class = "UINavigationItem"; prompt = "Content of"; ObjectID = "CpD-hP-gWB"; */
+"CpD-hP-gWB.prompt" = "Contenu de";
+
+/* Class = "UINavigationItem"; title = "url"; ObjectID = "CpD-hP-gWB"; */
+"CpD-hP-gWB.title" = "url";
+
+/* Class = "UITextField"; placeholder = "Secs."; ObjectID = "CwS-Je-Sw5"; */
+"CwS-Je-Sw5.placeholder" = "Secs.";
+
+/* Class = "UITextView"; text = "Music by an Artist"; ObjectID = "FMP-Ck-I6N"; */
+"FMP-Ck-I6N.text" = "Musique par un Artist";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HtP-JH-xPx"; */
+"HtP-JH-xPx.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Info"; ObjectID = "IMe-xX-lQx"; */
+"IMe-xX-lQx.text" = "Info";
+
+/* Class = "UITextField"; placeholder = "URL"; ObjectID = "IvE-w5-df4"; */
+"IvE-w5-df4.placeholder" = "URL";
+
+/* Class = "UILabel"; text = "Preferences"; ObjectID = "L61-3a-F2g"; */
+"L61-3a-F2g.text" = "Preférences";
+
+/* Class = "UILabel"; text = "txt"; ObjectID = "M5Q-9R-h1x"; */
+"M5Q-9R-h1x.text" = "txt";
+
+/* Class = "UILabel"; text = "fastFiles"; ObjectID = "Piy-Je-yf5"; */
+"Piy-Je-yf5.text" = "fastFiles";
+
+/* Class = "UITextView"; text = "A text file"; ObjectID = "RDZ-fV-GXq"; */
+"RDZ-fV-GXq.text" = "Un fichier texte";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "T7F-fG-gTB"; */
+"T7F-fG-gTB.title" = "Réglages";
+
+/* Class = "UITextField"; placeholder = "Search"; ObjectID = "U2m-tO-6BA"; */
+"U2m-tO-6BA.placeholder" = "Rechercher";
+
+/* Class = "UILabel"; text = "iCloud"; ObjectID = "Vkh-yX-zXa"; */
+"Vkh-yX-zXa.text" = "iCloud";
+
+/* Class = "UILabel"; text = "text"; ObjectID = "Vkp-VS-jDk"; */
+"Vkp-VS-jDk.text" = "text";
+
+/* Class = "UINavigationItem"; title = "file"; ObjectID = "cgd-25-FlL"; */
+"cgd-25-FlL.title" = "file";
+
+/* Class = "UITableViewSection"; headerTitle = "Information"; ObjectID = "kfg-wN-PlB"; */
+"kfg-wN-PlB.headerTitle" = "Information";
+
+/* Class = "UILabel"; text = "Download"; ObjectID = "nUL-dI-dfS"; */
+"nUL-dI-dfS.text" = "Télécharger";
+
+/* Class = "UILabel"; text = "Documents"; ObjectID = "o06-FC-0eS"; */
+"o06-FC-0eS.text" = "Documents";
+
+/* Class = "UILabel"; text = "Help"; ObjectID = "pgm-cP-9zA"; */
+"pgm-cP-9zA.text" = "Aide";
+
+/* Class = "UIBarButtonItem"; title = "Items here"; ObjectID = "pow-H1-PXR"; */
+"pow-H1-PXR.title" = "Items here";
+
+/* Class = "UILabel"; text = "Code refresh"; ObjectID = "q2e-Oo-Pqx"; */
+"q2e-Oo-Pqx.text" = "Rafraî. du code";
+
+/* Class = "UIBarButtonItem"; title = "Items here"; ObjectID = "rlK-bI-VbX"; */
+"rlK-bI-VbX.title" = "Items here";
+
+/* Class = "UITableViewSection"; headerTitle = "Settings"; ObjectID = "uvv-TI-cqB"; */
+"uvv-TI-cqB.headerTitle" = "Réglages";
+
+/* Class = "UILabel"; text = "Use Touch ID / Passcode"; ObjectID = "xoB-ge-65L"; */
+"xoB-ge-65L.text" = "Touch ID / Code";
+
+/* Class = "UINavigationItem"; title = "file"; ObjectID = "zOJ-PG-WZD"; */
+"zOJ-PG-WZD.title" = "Fichier";
+
+/* Class = "UILabel"; title = "Source code"; ObjectID = "pBF-KL-X3s"; */
+"pBF-KL-X3s.text" = "Code source";
