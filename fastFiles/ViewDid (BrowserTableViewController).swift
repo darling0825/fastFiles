@@ -17,44 +17,22 @@ extension BrowserTableViewController {
     override func viewDidAppear(_ animated: Bool) { // Appear
         super.viewDidAppear(true)
         
-        self.reload()
+        reload()
         
         if nextSelectedRow.indices.contains(0) { // If app is requesting to select file
             self.tableView.selectRow(at: IndexPath(row: nextSelectedRow[0], section: 0), animated: true, scrollPosition: UITableViewScrollPosition.middle)
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: { (Timer) in
+            Timer.scheduledTimer(withTimeInterval: 0.35, repeats: false, block: { (Timer) in
                 self.tableView.deselectRow(at: IndexPath(row: self.nextSelectedRow[0], section: 0), animated: true)
                 self.tableView.delegate?.tableView!(self.tableView, didSelectRowAt: IndexPath(row: self.nextSelectedRow[0], section: 0))
                 self.nextSelectedRow = []
+                self.downloadFromCloud()
             })
-        }
-        
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (Timer) in // Check if iCloud files are downloaded
-            
-            do {
-              let files = try FileManager.default.contentsOfDirectory(at: URL(fileURLWithPath:self.dir), includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsPackageDescendants)
-                
-                var undownloadedFiles = 0
-                for file in files {
-                    if file.pathExtension.lowercased() == "icloud" && file.lastPathComponent.hasPrefix(".") {
-                        undownloadedFiles+=1
-                    }
-                }
-                
-                if undownloadedFiles == 0 {
-                    Timer.invalidate()
-                    self.reload()
-                } else {
-                    undownloadedFiles = 0
-                }
-                
-            } catch let error {
-                print("ERROR: \(error.localizedDescription)")
-            }
-            
+        } else {
+            downloadFromCloud()
         }
         
         
-        reload()
+        
         
     }
     

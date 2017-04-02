@@ -14,8 +14,10 @@ extension ViewController {
         let device = UIDevice.current.modelName
         let os = UIDevice.current.systemName
         let version = UIDevice.current.systemVersion
+        let app = "fastFiles"
+        let appVersion = App().version
         
-        deviceInfo.text = "\(device), \(os) \(version)"
+        deviceInfo.text = "\(device), \(os) \(version), \(app) \(appVersion)"
     }
     
 }

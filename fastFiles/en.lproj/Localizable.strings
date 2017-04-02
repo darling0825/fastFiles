@@ -33,7 +33,7 @@
 "Import image" = "Import image / video";
 "Select image name" = "Select image name";
 "Select video name" = "Select video name";
-"\n\n\n\nDownloading" = "\n\n\n\nDownloading";
+"Downloading" = "Downloading";
 "/help" = "/enHelp.html";
 "Are you the owner of this device?" = "Are you the owner of this device?";
 "Error during verification" = "Error during verification";
@@ -41,3 +41,4 @@
 "Source code" = "Source code";
 "Don't update" = "Don't update";
 "Update" = "Update";
+"File not found!" = "File not found!";

@@ -23,6 +23,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             let data = defaults?.array(forKey: "history") as? [Data]
             docsContent = data?.map { URL(dataRepresentation: $0, relativeTo: nil)! }
             docsContent = docsContent.reversed()
+            
+            for doc in docsContent {
+                if !FileManager.default.fileExists(atPath: doc.path) {
+                    docsContent.remove(at: docsContent.index(of: doc)!)
+                }
+            }
+            defaults?.set(docsContent.map { $0.dataRepresentation }, forKey: "history")
+            self.TableView.reloadData()
+            
+            docsContent.reverse()
+            
         } else {
             docsContent = try! FileManager.default.contentsOfDirectory(at: (FileManager.default.containerURL(forSecurityApplicationGroupIdentifier:"group.marcela.ada.files")!.appendingPathComponent("File Provider Storage")), includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
         }

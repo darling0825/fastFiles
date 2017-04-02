@@ -81,6 +81,11 @@ extension ViewController {
             }
         }
         
+        if segue.identifier == "root" { // Open /
+            if let nextVC = segue.destination as? BrowserTableViewController {
+                nextVC.dir = "/"
+            }
+        }
 
         
     }

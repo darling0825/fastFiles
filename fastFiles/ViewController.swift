@@ -22,6 +22,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
     var player = AVPlayer()
     var imageURL: URL!
     
+    var checkForBytes = Timer()
     
     // Actions
     

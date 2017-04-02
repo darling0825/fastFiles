@@ -17,7 +17,6 @@ import Zip
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row)")!
-        
         return cell
     }
 
@@ -76,19 +75,19 @@ extension ViewController: UITableViewDelegate {
                         
                         try! FileManager.default.removeItem(at: App().libraryURL.appendingPathComponent("fastFiles"))
                         
-                        let alert = UIAlertController(title: "\n\n\n\nDownloading".localized, message: nil, preferredStyle: .alert)
+                        let downloading = UIAlertController(title: "Downloading".localized, message: "0%\n\(ByteCountFormatter().string(fromByteCount: 0)) / \(ByteCountFormatter().string(fromByteCount: 0))\n", preferredStyle: .alert)
                         
-                        let indicator = UIActivityIndicatorView(frame: alert.view.bounds)
-                        indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                        indicator.color = .black
+                        let progressDownload : UIProgressView = UIProgressView(progressViewStyle: .default)
+                        progressDownload.tag = 1
+                        progressDownload.setProgress(0, animated: true)
+                        progressDownload.frame = CGRect(x: 10, y: 85, width: 250, height: 0)
+                        downloading.view.addSubview(progressDownload)
                         
-                        alert.view.addSubview(indicator)
-                        indicator.isUserInteractionEnabled = false
-                        indicator.startAnimating()
-                        
-                        self.present(alert, animated: true, completion: nil)
+                        self.present(downloading, animated: true, completion: nil)
                         
                         let task = URLSession.shared.downloadTask(with: fileURL!, completionHandler: { (location, reponse, error) in
+                            
+                            self.checkForBytes.invalidate()
                             
                             if error == nil {
                                 do {
@@ -121,6 +120,20 @@ extension ViewController: UITableViewDelegate {
                         
                         task.resume()
                         
+                        self.checkForBytes = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (Timer) in
+                            let progress = Float(task.countOfBytesReceived)/Float(task.countOfBytesExpectedToReceive)
+                            let size = ByteCountFormatter().string(fromByteCount: task.countOfBytesReceived)
+                            let maxSize = ByteCountFormatter().string(fromByteCount: task.countOfBytesExpectedToReceive)
+                            
+                            if !progress.isNaN {
+                                print("\(Int(progress*100))%")
+                                downloading.message = "\(Int(progress*100))%\n\(size) / \(maxSize)\n"
+                                (downloading.view.viewWithTag(1) as! UIProgressView).setProgress(progress, animated: true)
+                            }
+                            
+                        }
+
+                        
                     }))
                     
                     alert.addAction(UIAlertAction(title: "Don't update".localized, style: .default, handler: { (UIAlertAction) in
@@ -134,22 +147,20 @@ extension ViewController: UITableViewDelegate {
                     
                     self.present(alert, animated: true, completion: nil)
                 } else {
+                                        
+                    let downloading = UIAlertController(title: "Downloading".localized, message: "0%\n\(ByteCountFormatter().string(fromByteCount: 0)) / \(ByteCountFormatter().string(fromByteCount: 0))\n", preferredStyle: .alert)
                     
-                    print("DOWNLOAD!!!")
+                    let progressDownload : UIProgressView = UIProgressView(progressViewStyle: .default)
+                    progressDownload.tag = 1
+                    progressDownload.setProgress(0, animated: true)
+                    progressDownload.frame = CGRect(x: 10, y: 85, width: 250, height: 0)
+                    downloading.view.addSubview(progressDownload)
                     
-                    let alert = UIAlertController(title: "\n\n\n\nDownloading".localized, message: nil, preferredStyle: .alert)
-                    
-                    let indicator = UIActivityIndicatorView(frame: alert.view.bounds)
-                    indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                    indicator.color = .black
-                    
-                    alert.view.addSubview(indicator)
-                    indicator.isUserInteractionEnabled = false
-                    indicator.startAnimating()
-                    
-                    self.present(alert, animated: true, completion: nil)
+                    self.present(downloading, animated: true, completion: nil)
                     
                     let task = URLSession.shared.downloadTask(with: fileURL!, completionHandler: { (location, reponse, error) in
+                        
+                        self.checkForBytes.invalidate()
                         
                         if error == nil {
                             do {
@@ -173,7 +184,7 @@ extension ViewController: UITableViewDelegate {
                             self.dismiss(animated: false, completion: {
                                 self.navigationController?.isNavigationBarHidden = false
                                 let alert = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: .alert)
-                                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+                                alert.addAction(UIKit.UIAlertAction(title: "Ok", style: .default, handler:nil))
                                 self.present(alert, animated: true, completion: nil)
                             })
                         }
@@ -181,6 +192,20 @@ extension ViewController: UITableViewDelegate {
                     })
                     
                     task.resume()
+                    
+                    self.checkForBytes = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (Timer) in
+                        let progress = Float(task.countOfBytesReceived)/Float(task.countOfBytesExpectedToReceive)
+                        let size = ByteCountFormatter().string(fromByteCount: task.countOfBytesReceived)
+                        let maxSize = ByteCountFormatter().string(fromByteCount: task.countOfBytesExpectedToReceive)
+                        
+                        if !progress.isNaN {
+                            print("\(Int(progress*100))%")
+                            downloading.message = "\(Int(progress*100))%\n\(size) / \(maxSize)\n"
+                            (downloading.view.viewWithTag(1) as! UIProgressView).setProgress(progress, animated: true)
+                        }
+                        
+                    }
+                    
                 }
             }
             

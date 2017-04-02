@@ -61,6 +61,10 @@ class App {
     var libraryURL: URL {
         return URL(fileURLWithPath:NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)[0])
     }
+    
+    var version: String {
+        return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+    }
 }
 
 extension URL {

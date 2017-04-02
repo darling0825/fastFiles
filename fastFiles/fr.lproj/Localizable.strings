@@ -33,7 +33,7 @@
 "Import image" = "Importer une image / video";
 "Select image name" = "Selectionnez le nom de l'image";
 "Select video name" = "Selectionnez le nom de la vidéo";
-"\n\n\n\nDownloading" = "\n\n\n\nTéléchargement";
+"Downloading" = "Téléchargement";
 "/help" = "/frHelp.html";
 "Are you the owner of this device?" = "Êtes vous le propriètaire de cet appareil?";
 "Error during verification" = "Erreur pendant la vérification!";
@@ -41,3 +41,4 @@
 "Source code" = "Code source";
 "Don't update" = "Ne pas mettre à jour";
 "Update" = "Mettre à jour";
+"File not found!" = "Fichier non trouvé";

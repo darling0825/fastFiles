@@ -31,61 +31,12 @@ extension TodayViewController: UITableViewDataSource {
         
         label.font = labelFont // Set label font
         
-        var url: URL!
         
         label.text = docsContent?[indexPath.row].lastPathComponent // Set label text
-        url = self.docsContent?[indexPath.row]
         
-        
-        
-        var isDir: ObjCBool = false
-        
-        if FileManager.default.fileExists(atPath: (self.docsContent?[indexPath.row].absoluteString.removingPercentEncoding?.replacingOccurrences(of: "file://", with: ""))!, isDirectory: &isDir) { // Check if file exists
-            do {
-                if !isDir.boolValue { // Is file
-                    if UIImage(data: try Data(contentsOf: url)) != nil { // Is image
-                        image.image = #imageLiteral(resourceName: "image.png")
-                    } else if (try? AVAudioPlayer(contentsOf: url)) != nil { // Is audio or video
-                        image.image = #imageLiteral(resourceName: "audioVideo.png")
-                    } else if url.absoluteString.lowercased().hasSuffix("pdf") { // Is pdf
-                        image.image = #imageLiteral(resourceName: "pdf.png")
-                    }else if url.absoluteString.lowercased().hasSuffix("html") || url.absoluteString.lowercased().hasSuffix("md") { // Is HTML
-                        image.image = #imageLiteral(resourceName: "html.png")
-                    } else if url.absoluteString.lowercased().hasSuffix("zip") { // Is zip
-                        image.image = #imageLiteral(resourceName: "zipFile.png")
-                    } else if url.absoluteString.lowercased().hasSuffix("swift") {
-                        image.image = #imageLiteral(resourceName: "SwiftFile") // Is Swift
-                    } else if url.absoluteString.lowercased().hasSuffix("m") || url.absoluteString.lowercased().hasSuffix("mm") {
-                        image.image = #imageLiteral(resourceName: "OBJCFile") // Is Objective-C
-                    } else if url.absoluteString.lowercased().hasSuffix("py") {
-                        image.image = #imageLiteral(resourceName: "PYFile") // Is Python
-                    } else if url.absoluteString.lowercased().hasSuffix("rtf") || url.absoluteString.lowercased().hasSuffix("doc") || url.absoluteString.lowercased().hasSuffix("docx") {
-                        image.image = #imageLiteral(resourceName: "rtfFile") // Is RTF or Word
-                    } else if url.pathExtension.lowercased() == "icloud" {
-                        image.image = #imageLiteral(resourceName: "iCloud-Drive") // Is undownloaded file
-                        label.text?.remove(at: (label.text?.startIndex)!)
-                        label.text = label.text?.replacingOccurrences(of: "."+url.pathExtension, with: "")
-                    } else {
-                        do {
-                            let _ = try String(contentsOf: url, encoding: String.Encoding.utf8)
-                            image.image = #imageLiteral(resourceName: "file") // Is file
-                        } catch let error { // Is unkown file
-                            print("ERROR: \(error.localizedDescription)")
-                            image.image = #imageLiteral(resourceName: "file")
-                        }
-                    }
-                } else {
-                    image.image = #imageLiteral(resourceName: "Folder") // Is folder
-                }
-                
-            } catch let error {
-                print("ERROR: \(error.localizedDescription)")
-            }
-        }
-        
-        if image.image == nil { // Is iCloud file
-            image.image = #imageLiteral(resourceName: "file")
-        }
+        image.image = #imageLiteral(resourceName: "Icon")
+        image.layer.cornerRadius = 12
+        image.clipsToBounds = true
         
         return cell!
     }

@@ -22,6 +22,7 @@
 		3A4A34231E7DC08B0015CB97 /* tableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A34211E7DC08B0015CB97 /* tableViewDelegate.swift */; };
 		3A4A34261E7DF9FD0015CB97 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A4A34251E7DF9FD0015CB97 /* Icons.xcassets */; };
 		3A683BC41E7DAE6E0020CFB7 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A683BC31E7DAE6E0020CFB7 /* icon.png */; };
+		3A6B3B991E908177005466E2 /* downloadFromCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B3B981E908177005466E2 /* downloadFromCloud.swift */; };
 		3A6DB8FF1E86FC13006442EC /* encodeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DB8FE1E86FC13006442EC /* encodeVideo.swift */; };
 		3A7203601E62521B00225ADE /* DocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A72035F1E62521B00225ADE /* DocumentPickerViewController.swift */; };
 		3A7203631E62521B00225ADE /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7203611E62521B00225ADE /* MainInterface.storyboard */; };
@@ -193,6 +194,7 @@
 		3A4A34251E7DF9FD0015CB97 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		3A548CA11E85F54C005442E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3A683BC31E7DAE6E0020CFB7 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		3A6B3B981E908177005466E2 /* downloadFromCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = downloadFromCloud.swift; sourceTree = "<group>"; };
 		3A6DB8FE1E86FC13006442EC /* encodeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = encodeVideo.swift; sourceTree = "<group>"; };
 		3A72035B1E62521A00225ADE /* fastFiles documents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "fastFiles documents.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A72035F1E62521B00225ADE /* DocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewController.swift; sourceTree = "<group>"; };
@@ -551,6 +553,7 @@
 				3AA0F7F01E6A2A6700F5E13B /* Ad (BrowserTableViewController).swift */,
 				3AF361BE1E634E01000C735C /* DocumentPickerDelegate.swift */,
 				3AF361C31E635271000C735C /* ViewDid (BrowserTableViewController).swift */,
+				3A6B3B981E908177005466E2 /* downloadFromCloud.swift */,
 				3A6DB8FE1E86FC13006442EC /* encodeVideo.swift */,
 				3AE2DD191E86DF4500934FC5 /* PhotoPicker.swift */,
 				3AF361E31E636040000C735C /* prepareForSegue (BrowserTableViewController).swift */,
@@ -1135,6 +1138,7 @@
 				3AA167061E7EDF6C0080D35A /* 3DTouch.swift in Sources */,
 				3ADE02651E5B6F2C00F0DB3A /* ViewController.swift in Sources */,
 				3AF361D21E63579C000C735C /* displayText.swift in Sources */,
+				3A6B3B991E908177005466E2 /* downloadFromCloud.swift in Sources */,
 				3ACDC8BE1E6CC069007CBE9F /* UITextFieldDelegate.swift in Sources */,
 				3AF361BC1E634D5E000C735C /* getDeviceInfo.swift in Sources */,
 				3AF361D91E635942000C735C /* viewDidLoad (HTMLViewController).swift in Sources */,

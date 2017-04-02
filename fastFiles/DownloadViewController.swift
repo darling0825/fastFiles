@@ -16,130 +16,95 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var url: UITextField!
     @IBOutlet weak var download: UIButton!
-    @IBOutlet weak var customName: UITextField!
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var google: UITextField!
     @IBOutlet weak var blur: UIVisualEffectView!
-   
-    var terminationStatus = ""
-    
-    var finalDest = URL(string:"")
     
     var fileURL = URL(string:"")
+    var finalDest = URL(string:"")
     
-
+    var backgroundTaskID: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
+    
+    var checkForBytes = Timer()
+    
     //Actions
     
     @IBAction func downloadFile(_ sender: Any) {
         
         print("DOWNLOAD FILE")
         
-        let docs = App().delegate().docsPath
-        var destination = ""
+        let downloading = UIAlertController(title: "Downloading".localized, message: "0%\n\(ByteCountFormatter().string(fromByteCount: 0)) / \(ByteCountFormatter().string(fromByteCount: 0))\n", preferredStyle: .alert)
         
-        print(self.fileURL!)
-        if self.fileURL!.lastPathComponent != "" {
-            destination = docs+"/"+self.fileURL!.lastPathComponent
-            } else {
-                destination = docs+"/Downloaded file"
-            }
-    
-        print(docs+"/"+self.fileURL!.lastPathComponent)
+        let progressDownload : UIProgressView = UIProgressView(progressViewStyle: .default)
+        progressDownload.tag = 1
+        progressDownload.setProgress(0, animated: true)
+        progressDownload.frame = CGRect(x: 10, y: 85, width: 250, height: 0)
+        downloading.view.addSubview(progressDownload)
         
-        if customName.text != "" {
-            if self.fileURL!.lastPathComponent != "" {
-                destination = docs+"/"+(customName.text)!+"."+(self.fileURL!.pathExtension)
-            } else {
-                destination = docs+"/"+(customName.text)!
-            }
-        }
-        
-        if destination.hasSuffix(".") {
-            destination.remove(at: destination.index(before: destination.endIndex))
-        }
-        
-        let destinationURL = URL(fileURLWithPath: destination)
-        
-        
-        if true {
-            print("CONTINUE DOWNLOAD")
-            if FileManager.default.fileExists(atPath: destination) && destinationURL.lastPathComponent != "File Provider Storage" {
-                let alert = UIAlertController(title: "Error!", message: "This file has been already downloaded!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
-                self.present(alert, animated: true, completion: nil)
-            } else if destinationURL.lastPathComponent == "File Provider Storage" {
-                let alert = UIAlertController(title: "Select file name", message: "", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (UIAlertAction) in
-                    let filename = alert.textFields?[0].text
-                    let fileExtension = alert.textFields?[1].text
-                    
-                    if fileExtension == "" {
-                        self.customName.text = filename
-                        self.downloadFile(self)
-                    } else {
-                        self.customName.text = filename!+"."+fileExtension!
-                        self.downloadFile(self)
+        self.blur.isHidden = false
+        self.present(downloading, animated: true, completion: nil)
+            
+        let task = URLSession.shared.downloadTask(with: self.fileURL!, completionHandler: { (location, reponse, error) in
+            
+            self.checkForBytes.invalidate()
+            
+            if error == nil {
+                print(location!.absoluteString)
+                self.url.resignFirstResponder()
+                do {
+                    self.finalDest = App().delegate().docsURL.appendingPathComponent(reponse!.suggestedFilename!)
+                    print("FILE NAME: "+(reponse?.suggestedFilename)!)
+                    print(try FileManager.default.contentsOfDirectory(atPath: location!.deletingLastPathComponent().path))
+                    print(self.finalDest!)
+                    try FileManager.default.moveItem(at: location!, to: self.finalDest!)
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: {
+                            self.blur.isHidden = true
+                            self.performSegue(withIdentifier: "Downloads", sender: nil)
+                        })
                     }
-                    
-                }))
-                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-                
-                alert.addTextField(configurationHandler: { (UITextField) in
-                    UITextField.placeholder = "File name"
-                })
-                
-                alert.addTextField(configurationHandler: { (UITextField) in
-                    UITextField.placeholder = "File extension"
-                })
-                
-                self.present(alert, animated: true, completion: nil)
-            } else {
-                
-                print("DOWNLOAD!!!")
-                
-                let alert = UIAlertController(title: "\n\n\n\nDownloading".localized, message: nil, preferredStyle: .alert)
-            
-                let indicator = UIActivityIndicatorView(frame: alert.view.bounds)
-                indicator.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-                indicator.color = .black
-            
-                alert.view.addSubview(indicator)
-                indicator.isUserInteractionEnabled = false
-                indicator.startAnimating()
-            
-                self.blur.isHidden = false
-                self.navigationController?.isNavigationBarHidden = true
-                self.present(alert, animated: true, completion: nil)
-            
-                let task = URLSession.shared.downloadTask(with: self.fileURL!, completionHandler: { (location, reponse, error) in
-                
-                    if error == nil {
-                        do {
-                            self.finalDest = destinationURL
-                            self.url.resignFirstResponder()
-                            try FileManager.default.moveItem(at: location!, to: destinationURL)
-                            self.terminationStatus = "Success"
-                        } catch let moveError {
-                            self.terminationStatus = moveError.localizedDescription
-                        }
-                    } else {
-                        print("ERRROR")
-                        self.dismiss(animated: false, completion: {
+                } catch let error {
+                    DispatchQueue.main.async {
+                        self.dismiss(animated: true, completion: {
                             self.blur.isHidden = true
                             self.navigationController?.isNavigationBarHidden = false
-                            let alert = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: .alert)
-                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+                            print(error.localizedDescription)
+                            let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
+                            alert.addAction(UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil))
                             self.present(alert, animated: true, completion: nil)
                         })
                     }
+                }
                 
-                })
-            
-                task.resume()
+            } else {
+                print("ERRROR")
+                DispatchQueue.main.async {
+                    self.dismiss(animated: false, completion: {
+                        self.blur.isHidden = true
+                        let alert = UIAlertController(title: "Error!", message: error?.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler:nil))
+                        self.present(alert, animated: true, completion: nil)
+                    })
+                }
             }
+            
+        })
+        
+        task.resume()
+        
+        checkForBytes = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (Timer) in
+            let progress = Float(task.countOfBytesReceived)/Float(task.countOfBytesExpectedToReceive)
+            let size = ByteCountFormatter().string(fromByteCount: task.countOfBytesReceived)
+            let maxSize = ByteCountFormatter().string(fromByteCount: task.countOfBytesExpectedToReceive)
+            
+            if !progress.isNaN {
+                print("\(Int(progress*100))%")
+                downloading.message = "\(Int(progress*100))%\n\(size) / \(maxSize)\n"
+                (downloading.view.viewWithTag(1) as! UIProgressView).setProgress(progress, animated: true)
+            }
+            
         }
-    
-        print(destination)
+        
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -159,5 +124,6 @@ class DownloadViewController: UIViewController, UIWebViewDelegate {
             downloadFile(self)
         }
     }
+    
     
 }

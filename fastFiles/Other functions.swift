@@ -47,6 +47,7 @@ extension BrowserTableViewController {
         if indexFile.isHidden {
             tableView.contentSize.height -= indexFile.frame.size.height
         }
+        
     }
     
     
@@ -75,7 +76,7 @@ extension BrowserTableViewController {
                     let nextFileIndex = files.index(of: file.lastPathComponent)
                 
                     self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                    Timer.scheduledTimer(withTimeInterval: 0.35, repeats: true, block: { (Timer) in
                         self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
                     })
                 }
@@ -98,7 +99,7 @@ extension BrowserTableViewController {
                     let nextFileIndex = files.index(of: file.lastPathComponent)
                     
                     self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                    Timer.scheduledTimer(withTimeInterval: 0.35, repeats: true, block: { (Timer) in
                         self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
                     })
                 }
@@ -133,7 +134,7 @@ extension BrowserTableViewController {
                     let nextFileIndex = files.index(of: file.lastPathComponent)
                     
                     self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                    Timer.scheduledTimer(withTimeInterval: 0.35, repeats: true, block: { (Timer) in
                         self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
                     })
                 }
@@ -162,7 +163,7 @@ extension BrowserTableViewController {
                     let nextFileIndex = files.index(of: file.lastPathComponent)
                     
                     self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
+                    Timer.scheduledTimer(withTimeInterval: 0.35, repeats: true, block: { (Timer) in
                         self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
                     })
                 }
@@ -225,8 +226,13 @@ extension BrowserTableViewController {
             
             for cell in self.tableView.visibleCells {
                 if cell.accessoryType == .checkmark {
-                    filesName.append(((cell.viewWithTag(2) as! UILabel).text!))
-                    cell.accessoryType = .none
+                    if (cell.viewWithTag(4) as! UILabel).text == "" {
+                        filesName.append(((cell.viewWithTag(2) as! UILabel).text!))
+                        cell.accessoryType = .none
+                    } else {
+                        filesName.append(((cell.viewWithTag(2) as! UILabel).text!+"."+(cell.viewWithTag(4) as! UILabel).text!))
+                        cell.accessoryType = .none
+                    }
                 }
             }
             
@@ -236,14 +242,12 @@ extension BrowserTableViewController {
             createAlert.addAction(UIAlertAction(title: "Create".localized, style: .default, handler: { (UIAlertAction) in
                 do {
                     print("ZIP TO CREATE: \n"+self.dir+"/"+(createAlert.textFields?[0].text)!)
-                    try FileManager.default.createDirectory(atPath: self.dir+"/"+(createAlert.textFields?[0].text)!, withIntermediateDirectories: true, attributes: [:])
                     let files = filesList.components(separatedBy: "\n")
                     
                     for file in files {
                         print("FILE TO ZIP:")
                         print(self.dir+"/"+file)
                         print(files.count)
-                        try FileManager.default.copyItem(atPath: self.dir+"/"+file, toPath: self.dir+"/"+((createAlert.textFields?[0].text)!+"/"+file))
                     }
                     
                     
@@ -259,23 +263,25 @@ extension BrowserTableViewController {
                     
                     self.present(alert, animated: true, completion: nil)
                     
-                    let zipfile = try! Zip.quickZipFiles([URL(fileURLWithPath:self.dir).appendingPathComponent((createAlert.textFields?[0].text)!)], fileName: (createAlert.textFields?[0].text)!)
-                    try! FileManager.default.removeItem(atPath: URL(fileURLWithPath:self.dir).appendingPathComponent(createAlert.textFields![0].text!).path)
+                    var filesURL = [URL]()
+                    for fileName in filesName {
+                        print(fileName)
+                        filesURL.append((URL(string:self.dir.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!)!.appendingPathComponent(fileName)))
+                    }
                     
-                    try! FileManager.default.moveItem(at: zipfile, to: URL(fileURLWithPath: self.dir).appendingPathComponent(zipfile.lastPathComponent))
-                        
+                    let zipFile = try Zip.quickZipFiles(filesURL, fileName: (createAlert.textFields?[0].text)!)
+                    
+                    try FileManager.default.moveItem(at: zipFile, to: App().delegate().docsURL.appendingPathComponent(zipFile.lastPathComponent))
+                    
                     self.reload()
-                        
-                    let filePath = (self.dir+"/"+(createAlert.textFields![0].text)!+".zip").replacingOccurrences(of: "//", with: "/")
-                    print(filePath)
-                    let file = URL(fileURLWithPath: filePath)
-                    print(file)
+                    
                     let files_ = try! FileManager.default.contentsOfDirectory(atPath: self.dir)
                     print(files_)
-                    let nextFileIndex = files_.index(of: file.lastPathComponent)
-                    print(file.lastPathComponent)
-                        
+                    let nextFileIndex = files_.index(of: zipFile.lastPathComponent)
+                    print(zipFile.lastPathComponent)
+                    
                     self.tableView.selectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true, scrollPosition: .middle)
+                    
                     Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { (Timer) in
                         self.tableView.deselectRow(at: IndexPath(row: nextFileIndex!, section:0), animated: true)
                     })
@@ -286,6 +292,7 @@ extension BrowserTableViewController {
                     self.dismiss(animated: true, completion: {
                         let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
                         alert.addAction(UIKit.UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
                     })
                 }
             }))
