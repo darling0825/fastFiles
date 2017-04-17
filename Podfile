@@ -10,7 +10,8 @@ target 'fastFiles' do
   pod 'Zip', '~> 0.6'
   pod 'Highlightr'
   pod 'Down'
-
+  pod 'NMSSH'
+  pod 'TZKeyboardPop', '~> 0.0.1'
 end
 
 target 'fastFiles documents' do

@@ -17,11 +17,18 @@ import Zip
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "\(indexPath.row)")!
+        if (cell.viewWithTag(2) as! UILabel).text == "SFTP" {
+            let host = UserDefaults.standard.string(forKey: "IP")
+            if host != nil {
+                (cell.viewWithTag(2) as! UILabel).text = host
+            }
+        }
+        
         return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 7
     }
 }
 
@@ -199,10 +206,18 @@ extension ViewController: UITableViewDelegate {
                         let maxSize = ByteCountFormatter().string(fromByteCount: task.countOfBytesExpectedToReceive)
                         
                         if !progress.isNaN {
-                            print("\(Int(progress*100))%")
-                            downloading.message = "\(Int(progress*100))%\n\(size) / \(maxSize)\n"
-                            (downloading.view.viewWithTag(1) as! UIProgressView).setProgress(progress, animated: true)
+                            if progress*100 >= 0 {
+                                print("\(Int(progress*100))%")
+                                downloading.message = "\(Int(progress*100))%\n\(size) / \(maxSize)\n"
+                                (downloading.view.viewWithTag(1) as! UIProgressView).setProgress(progress, animated: true)
+                            } else {
+                                print("?%")
+                                downloading.message = "???\n\(size) / ???\n"
+                                (downloading.view.viewWithTag(1) as! UIProgressView).setProgress(1, animated: false)
+                                (downloading.view.viewWithTag(1) as! UIProgressView).tintColor = UIColor.black
+                            }
                         }
+
                         
                     }
                     

@@ -33,22 +33,7 @@ extension AppDelegate {
             }
         }
         
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateViewController(withIdentifier: "Main") as! UINavigationController
-        if let presented = window?.rootViewController?.presentedViewController {
-            presented.dismiss(animated: false, completion: {
-                self.window?.rootViewController?.present(mainVC, animated: false, completion: {
-                    // Open directory
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "open"), object: nil)
-                })
-            })
-        } else {
-            self.window?.rootViewController?.present(mainVC, animated: true, completion: {
-                // Open directory
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "open"), object: nil)
-            })
-        }
-        
+    
         var isDir: ObjCBool = false
         if FileManager.default.fileExists(atPath: file.path, isDirectory: &isDir) { // Check if file exists
             
@@ -63,12 +48,29 @@ extension AppDelegate {
                 defaults.removeObject(forKey: "fileIndex")
                 defaults.synchronize()
                 
+                // Open directory
+                if !IN_APP_OPEN {
+                    Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (Timer) in
+                        if !self.urlOpened {
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "open"), object: nil)
+                            Timer.invalidate()
+                            self.urlOpened = false
+                        }
+                    }
+                } else {
+                    if !self.urlOpened {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "open"), object: nil)
+                        self.urlOpened = false
+                        self.IN_APP_OPEN = false
+                    }
+                }
+                
                 return true
             } else { // Is file
                 
                 print("IS FILE")
                 
-                // Directory path
+                // file path
                 let defaults = UserDefaults.standard
                 defaults.set(file.deletingLastPathComponent().path, forKey: "path")
                 
@@ -80,12 +82,22 @@ extension AppDelegate {
                 
                 defaults.synchronize()
                 
+                // Open file
+                Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { (Timer) in
+                    if !self.urlOpened {
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "open"), object: nil)
+                        Timer.invalidate()
+                        self.urlOpened = false
+                    }
+                }
+                
                 return false
             }
         } else {
             print("FILE DOESN'T EXISTS")
             return false
         }
+        
         
         
     }

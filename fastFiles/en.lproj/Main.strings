@@ -48,7 +48,7 @@
 "IMe-xX-lQx.text" = "Info";
 
 /* Class = "UITextField"; placeholder = "URL"; ObjectID = "IvE-w5-df4"; */
-"IvE-w5-df4.placeholder" = "URL";
+"IvE-w5-df4.placeholder" = "Search or enter website name";
 
 /* Class = "UILabel"; text = "Preferences"; ObjectID = "L61-3a-F2g"; */
 "L61-3a-F2g.text" = "Preferences";
@@ -109,3 +109,24 @@
 
 /* Class = "UILabel"; title = "Source code"; ObjectID = "pBF-KL-X3s"; */
 "pBF-KL-X3s.text" = "Source code";
+
+/* Class = "UILabel"; title = "Subscribe to beta"; ObjectID = "5m4-IU-vGy"; */
+"5m4-IU-vGy.text" = "Subscribe to beta";
+
+/* Class = "UITextField"; placeholder = "IP or hostname"; ObjectID = "xUx-U3-Hqy"; */
+"xUx-U3-Hqy.placeholder" = "IP or hostname";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "fes-Lb-VoK"; */
+"fes-Lb-VoK.placeholder" = "Username";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "cOC-hM-obG"; */
+"cOC-hM-obG.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "aEI-kT-Xg4"; */
+"aEI-kT-Xg4.normalTitle" = "Login";
+
+/* Class = "UIButton"; normalTitle = "Upload"; ObjectID = "gkq-2t-Wwg"; */
+"gkq-2t-Wwg.normalTitle" = "Upload";
+
+
+

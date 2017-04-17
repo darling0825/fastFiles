@@ -44,7 +44,6 @@ extension BrowserTableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: NSNotification.Name.UIApplicationDidBecomeActive, object: nil) // Reload when app become active
         
         setItems() // Set navigation bar items
-        checkForPasteboard() // Check if pasteboard contains a file
         
         
         do { // Get files in current directory

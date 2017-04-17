@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class TextViewController: UIViewController {
     
@@ -18,6 +19,9 @@ class TextViewController: UIViewController {
     @IBOutlet weak var htmlToolbar: UIToolbar!
     
     var isCode = false
+    
+    var language = ""
+    
     
     
     // Actions
@@ -43,8 +47,34 @@ class TextViewController: UIViewController {
         }
     }
     
-    @IBAction func loadHTML(_ sender: Any) { // Load HTML
-        self.performSegue(withIdentifier: "HTML", sender: nil)
+    @IBAction func loadHTML(_ sender: Any) { // Load HTML or Swift
+        if language == "htmlbars" || language == "markdown" {
+            self.performSegue(withIdentifier: "HTML", sender: nil)
+        } else {
+            let task = URLSession.shared.dataTask(with: URL(string:"http://coldg.ddns.net/swift/?s=\(text.text.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)")!, completionHandler: { (data, response, error) in
+                if error == nil {
+                    if data != nil {
+                        self.dismiss(animated: true, completion: {
+                            self.performSegue(withIdentifier: "swift", sender: nil)
+                        })
+                    }
+                } else {
+                    self.dismiss(animated: true, completion: {
+                        let alert = UIAlertController(title: "Error!".localized, message: error?.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    })
+                    
+                }
+            })
+            
+            task.resume()
+            
+            
+            let alertController = UIAlertController(title: "Compiling...".localized, message: "\n", preferredStyle: .alert)
+            present(alertController, animated: true, completion: nil)
+        }
+        
     }
     
 

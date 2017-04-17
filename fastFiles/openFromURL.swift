@@ -15,6 +15,7 @@ import UIKit
 
 extension ViewController {
     func openFromURL() {
+        App().delegate().urlOpened = true
         self.performSegue(withIdentifier: "openBrowser", sender: nil)
     }
 }

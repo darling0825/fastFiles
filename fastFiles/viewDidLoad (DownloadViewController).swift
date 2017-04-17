@@ -19,8 +19,6 @@ extension DownloadViewController {
         
         // Design text fields
         url.tintColor = .blue
-        google.tintColor = .blue
-        
         
         webView.loadRequest(URLRequest(url: URL(string:"https://www.google.com")!)) // Load Google
         
@@ -28,8 +26,10 @@ extension DownloadViewController {
         
         blur.isHidden = true // Unblur
         
-        (view.viewWithTag(10) as! UIActivityIndicatorView).isHidden = true // Hide activity view
-        
+        // Config videos
+        webView.allowsPictureInPictureMediaPlayback = true
+        webView.mediaPlaybackRequiresUserAction = true
+
         
         backgroundTaskID = UIApplication.shared.beginBackgroundTask(expirationHandler: { // Start background task
             UIApplication.shared.endBackgroundTask(self.backgroundTaskID)

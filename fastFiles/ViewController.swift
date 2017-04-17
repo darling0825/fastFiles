@@ -24,12 +24,16 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
     
     var checkForBytes = Timer()
     
+    @IBOutlet weak var news: UIWebView!
+    
+    
     // Actions
     
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
         return .none
     }
     
+     
     
 }
 

@@ -60,6 +60,7 @@ extension MusicViewController {
         audioList.insert(url, at: 0) // Add the current audio at the first of audioList
         print(audioList)
         
+        
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (Timer) in // A timer
             
             if !self.time.isSelected { // Show current time in slider if slider is not selected
@@ -84,12 +85,26 @@ extension MusicViewController {
             }
             
             if self.audio.isPlaying {
-                self.playButton.imageView?.image = #imageLiteral(resourceName: "Pause.png")
+                self.playButton.setImage(UIImage().from(systemItem: .pause), for: UIControlState.normal)
             } else {
-                self.playButton.imageView?.image = #imageLiteral(resourceName: "Play.png")
+                self.playButton.setImage(UIImage().from(systemItem: .play), for: UIControlState.normal)
             }
             
             self.getAudioInfo() // Get current audio info
+            
+            // Update background
+            self.background.image = self.Artwork.image
         }
+        
+        
+        // Config buttons
+        
+        playButton.setTitle("", for: .normal)
+        
+        previousButton.setImage(UIImage().from(systemItem: .rewind)?.withRenderingMode(.alwaysTemplate), for: .normal)
+        previousButton.setTitle("", for: .normal)
+        
+        nextButton.setImage(UIImage().from(systemItem: .fastForward)?.withRenderingMode(.alwaysTemplate), for: .normal)
+        nextButton.setTitle("", for: .normal)
     }
 }

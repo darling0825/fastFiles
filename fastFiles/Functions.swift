@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreSpotlight
+import UserNotifications
+import NMSSH
 
 extension AppDelegate {
     
@@ -26,6 +28,20 @@ extension AppDelegate {
         }
         
         UserDefaults.standard.synchronize() // Sync UserDefaults
+        
+        if #available(iOS 8, *) { // Register for notifications
+            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge], completionHandler: { (success, error) in
+                if error != nil {
+                    print("ERROR: "+error!.localizedDescription)
+                }
+            })
+            
+            
+        }
+        
+        
+        
+        
         
         return true
     }
@@ -60,6 +76,7 @@ extension AppDelegate {
         BrowserTableViewController().player.play()
         background = false
         index() // Index for spotlight
+        UIApplication.shared.applicationIconBadgeNumber = 0 // Remove badges
     }
     
     // Application did become active
@@ -74,7 +91,22 @@ extension AppDelegate {
     // Application will terminate
     func applicationWillTerminate(_ application: UIApplication) {
         index() // Index for spotlight
+        
+        for url in try! FileManager.default.contentsOfDirectory(at: App().tmpURL, includingPropertiesForKeys: nil, options: .skipsHiddenFiles) { // Remove download caches
+            do { try FileManager.default.removeItem(at: url) } catch _ {}
+        }
+        
+        let docs = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0]
+        if FileManager.default.fileExists(atPath: docs.appendingPathComponent("Inbox").path) {
+            
+            for doc in try! FileManager.default.contentsOfDirectory(atPath: docs.appendingPathComponent("Inbox").path) {
+                do {try FileManager.default.removeItem(at: docs.appendingPathComponent("Inbox").appendingPathComponent(doc))} catch let error {
+                    print("ERROR: "+error.localizedDescription)
+                }
+            }
+        }
     }
+    
     
     
 }

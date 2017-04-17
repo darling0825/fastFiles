@@ -29,19 +29,9 @@ extension ViewController {
         if UserDefaults.standard.bool(forKey: "touchID") {
             touchID()
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) { // View did appear
-        super.viewDidAppear(false)
         
-        // Config navigation bar
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) { // View will disapear
-        super.viewWillDisappear(false)
+        // Design
+        self.navigationController?.navigationBar.tintColor = .white
         
-        // Config navigation bar
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 }

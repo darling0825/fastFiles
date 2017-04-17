@@ -58,10 +58,8 @@ extension ViewController {
         }
 
         if segue.identifier == "showHelp" { // open Help
-            if let nextVC = segue.destination as? HTMLViewController {
-                let code = try! String(contentsOfFile: Bundle.main.path(forResource: "Instructions", ofType: "")!+"/help".localized)
-                nextVC.code = code
-                nextVC.file = URL(fileURLWithPath: Bundle.main.path(forResource: "Instructions", ofType: "")!+"/help".localized)
+            if let nextVC = segue.destination as? BrowserTableViewController {
+                nextVC.dir = Bundle.main.path(forResource: "help".localized, ofType: "")!
             }
         }
         

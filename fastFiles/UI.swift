@@ -25,21 +25,6 @@ extension BrowserTableViewController {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(Add))
     }
     
-    func checkForPasteboard() { // Check if pasteboard contains a file
-        Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { (Timer) in
-            let delegate = UIApplication.shared.delegate as! AppDelegate
-            if !delegate.background {
-                if (UIPasteboard.general.string != nil) {
-                    if (UIPasteboard.general.string?.contains("(copy)"))! || (UIPasteboard.general.string?.contains("(move)"))! {
-                        self.navigationItem.rightBarButtonItems?[1].isEnabled = true
-                    } else {
-                        self.navigationItem.rightBarButtonItems?[1].isEnabled = false
-                    }
-                }
-            }
-            
-        }
-    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { // Configure cell
         
@@ -116,6 +101,27 @@ extension BrowserTableViewController {
                         image.image = #imageLiteral(resourceName: "Trash") // Is the trash
                         label.text = ""
                     }
+                    
+                    do {
+                        let files = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
+                        var isPlaylist = true
+                        for file in files {
+                            if (try? AVAudioPlayer(contentsOf: file)) == nil {
+                                isPlaylist = false
+                            }
+                        }
+                        
+                        if files == [] {
+                            isPlaylist = false
+                        }
+                        
+                        if isPlaylist {
+                            image.image = #imageLiteral(resourceName: "MissingArtworkMusic.png")
+                        }
+                        
+                    } catch let error {
+                        print("ERROR: "+error.localizedDescription)
+                    }
                 }
             } catch let error {
                 image.image = #imageLiteral(resourceName: "file")
@@ -190,11 +196,8 @@ extension BrowserTableViewController {
                 nextDir = dir+"/"+files[indexPath.row]+"/" // Directory path
                 
                 // Open directory
-                if self.restorationIdentifier == "first" {
-                    self.performSegue(withIdentifier: "files", sender: nil)
-                } else {
-                    self.performSegue(withIdentifier: "files2", sender: nil)
-                }
+                App().delegate().IN_APP_OPEN = true
+                let _ = App().delegate().application(UIApplication.shared, open: url.urlScheme)
             } else { // Is file
                 
                 print("IS FILE")
@@ -234,11 +237,8 @@ extension BrowserTableViewController {
                             nextDir = (newURL.absoluteString.replacingOccurrences(of: "file://", with: "").removingPercentEncoding!) // Unzipped directory path
                             
                             // Open unzipped directory
-                            if self.restorationIdentifier == "first" {
-                                self.performSegue(withIdentifier: "files", sender: nil)
-                            } else {
-                                self.performSegue(withIdentifier: "files2", sender: nil)
-                            }
+                            let _ = App().delegate().application(UIApplication.shared, open: newURL)
+                            
                         } catch let error {
                             let alert = UIAlertController(title: "Error!".localized, message: error.localizedDescription, preferredStyle: .alert)
                             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))

@@ -50,8 +50,8 @@ extension TextViewController {
         let code = highlight(url.pathExtension, code: text.text)
         if code != nil {
             text.attributedText = code?["Code"] as! NSAttributedString
-            
-            if (code?["Language"] as! String) == "htmlbars" || (code?["Language"] as! String) == "markdown" {
+            language = code?["Language"] as! String
+            if (code?["Language"] as! String) == "htmlbars" || (code?["Language"] as! String) == "markdown" || (code?["Language"] as! String) == "swift" {
                 htmlToolbar.isHidden = false
             }
         }

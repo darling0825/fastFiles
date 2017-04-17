@@ -19,7 +19,7 @@
 "Please select files to compress" = "Sélectionnez les fichiers à compresser";
 "Compress" = "Compresser";
 "Create" = "Créer";
-"\n\n\n\nCompressing" = "\n\n\n\nComprimage en cours";
+"\n\n\n\nCompressing" = "\n\n\n\nCompression en cours";
 "New file name (without extension)" = "Nouveau nom (sans extention)";
 "Open with..." = "Ouvrir avec...";
 "Do you want to open this file as audio or video? (2 choices are correct)" = "Voulez-vouz ouvrir le fichier comme un audio ou une vidéo? (les 2 choix sont correctes)";
@@ -30,7 +30,7 @@
 "Frame load interrupted" = "Chargement du cadre interrompu";
 "Are you sure to set refresh time to %d seconds? \nIt will be lagged!" = "Êtes vous sûre de définir le rafraîchissement du code à %d secondes\nCe sera laggé!";
 "Continue" = "Continuer";
-"Import image" = "Importer une image / video";
+"Import image" = "Importer une image / vidéo";
 "Select image name" = "Selectionnez le nom de l'image";
 "Select video name" = "Selectionnez le nom de la vidéo";
 "Downloading" = "Téléchargement";
@@ -42,3 +42,12 @@
 "Don't update" = "Ne pas mettre à jour";
 "Update" = "Mettre à jour";
 "File not found!" = "Fichier non trouvé";
+"Nothing in clipboard!" = "Rien dans le presse-papier!";
+"File downloaded!" = "Fichier téléchargé!";
+"Create" = "Créer";
+"help" = "aide";
+"Uploading..." = "Envoi en cours...";
+"Type a command" = "Entrez une commande";
+"Run" = "Éxécuter";
+"Type a directory" = "Entrez un répértoire";
+"Compiling..." = "Compilation...";

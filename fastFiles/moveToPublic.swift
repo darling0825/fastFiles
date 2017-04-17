@@ -23,15 +23,6 @@ extension AppDelegate {
         
         let docs = FileManager.default.urls(for: .documentDirectory, in: .allDomainsMask)[0]
         
-        if FileManager.default.fileExists(atPath: docs.appendingPathComponent("Inbox").path) {
-            
-            for doc in try! FileManager.default.contentsOfDirectory(atPath: docs.appendingPathComponent("Inbox").path) {
-                do {try FileManager.default.removeItem(at: docs.appendingPathComponent("Inbox").appendingPathComponent(doc))} catch let error {
-                    print("ERROR: "+error.localizedDescription)
-                }
-            }
-        }
-        
         do {
             let docsContent = try FileManager.default.contentsOfDirectory(at: docs, includingPropertiesForKeys: nil, options: .skipsHiddenFiles)
             

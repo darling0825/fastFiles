@@ -20,7 +20,6 @@ extension TextViewController {
         print("Prepare for segue")
         
         if segue.identifier == "HTML" {
-            print("Identifier is HTML")
             if let nextVC = segue.destination as? HTMLViewController {
                 nextVC.code = text.text!
                 
@@ -32,6 +31,15 @@ extension TextViewController {
                     }
                 }
                 nextVC.file = url
+            }
+        }
+        
+        if segue.identifier == "swift" {
+            if let nextVC = segue.destination as? NMTerminalViewController {
+                nextVC.command = "execAndDelete ~/script && logout";
+                nextVC.host = "coldg.ddns.net"
+                nextVC.user = "swiftexec"
+                nextVC.password = "swift"
             }
         }
     }

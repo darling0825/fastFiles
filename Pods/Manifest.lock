@@ -1,18 +1,24 @@
 PODS:
   - Down (0.3.1)
   - Highlightr (1.1.0)
+  - NMSSH (2.2.6)
+  - TZKeyboardPop (0.0.1)
   - Zip (0.6.0)
 
 DEPENDENCIES:
   - Down
   - Highlightr
+  - NMSSH
+  - TZKeyboardPop (~> 0.0.1)
   - Zip (~> 0.6)
 
 SPEC CHECKSUMS:
   Down: 30aa2131ad055d37802f1b52b8f0f7afe324a8aa
   Highlightr: 519911a0a9a040d76e591f6fe58bb5177c8bdaa3
+  NMSSH: f429af1a564e154450dd99cf47eced2574779b13
+  TZKeyboardPop: 96b7208ff4611c6f608e852e54cb0efabcd1a0c4
   Zip: 805fc2fa9d2f05bbb7762d982d7a42ccdcc51f42
 
-PODFILE CHECKSUM: 761f6f68a754296c7759f2999b86917f7080897d
+PODFILE CHECKSUM: fe36df4cb6a6c78064948f20b0fa3b6c2a7bf4e5
 
 COCOAPODS: 1.2.0

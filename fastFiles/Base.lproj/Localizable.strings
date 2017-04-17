@@ -42,3 +42,12 @@
 "Don't update" = "Don't update";
 "Update" = "Update";
 "File not found!" = "File not found!";
+"Nothing in clipboard!" = "Nothing in clipboard!";
+"File downloaded!" = "File downloaded!";
+"Create" = "Create";
+"help" = "help";
+"Uploading..." = "Uploading...";
+"Type a command" = "Type a command";
+"Run" = "Run";
+"Type a directory" = "Type a directory";
+"Compiling..." = "Compiling...";

@@ -21,8 +21,10 @@
 		3A4A34221E7DC08B0015CB97 /* tableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A34201E7DC08B0015CB97 /* tableViewDataSource.swift */; };
 		3A4A34231E7DC08B0015CB97 /* tableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4A34211E7DC08B0015CB97 /* tableViewDelegate.swift */; };
 		3A4A34261E7DF9FD0015CB97 /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A4A34251E7DF9FD0015CB97 /* Icons.xcassets */; };
-		3A683BC41E7DAE6E0020CFB7 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A683BC31E7DAE6E0020CFB7 /* icon.png */; };
+		3A67233F1E914D2A00973699 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A67233E1E914D2A00973699 /* Notifications.swift */; };
+		3A6AA3121EA3B31000D34310 /* NMTerminalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6AA3111EA3B31000D34310 /* NMTerminalViewController.swift */; };
 		3A6B3B991E908177005466E2 /* downloadFromCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B3B981E908177005466E2 /* downloadFromCloud.swift */; };
+		3A6D24BF1EA2AA6400F3236F /* ListFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6D24BE1EA2AA6400F3236F /* ListFiles.swift */; };
 		3A6DB8FF1E86FC13006442EC /* encodeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6DB8FE1E86FC13006442EC /* encodeVideo.swift */; };
 		3A7203601E62521B00225ADE /* DocumentPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A72035F1E62521B00225ADE /* DocumentPickerViewController.swift */; };
 		3A7203631E62521B00225ADE /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A7203611E62521B00225ADE /* MainInterface.storyboard */; };
@@ -30,12 +32,19 @@
 		3A7203721E62521B00225ADE /* fastFiles documentsFileProvider.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A7203691E62521B00225ADE /* fastFiles documentsFileProvider.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3A7203751E62521B00225ADE /* fastFiles documents.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3A72035B1E62521A00225ADE /* fastFiles documents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3A780FEF1E76135B00145A57 /* SyntaxHighlighting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A780FEE1E76135B00145A57 /* SyntaxHighlighting.swift */; };
+		3A7A5AF91EA2B74300FA47E3 /* Notifications (SFTPTableViewController).swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A5AF81EA2B74300FA47E3 /* Notifications (SFTPTableViewController).swift */; };
+		3A7A5AFB1EA2BD2900FA47E3 /* UIDocumentPickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A5AFA1EA2BD2900FA47E3 /* UIDocumentPickerDelegate.swift */; };
+		3A7A5AFD1EA2E75E00FA47E3 /* Commands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7A5AFC1EA2E75E00FA47E3 /* Commands.swift */; };
 		3A7B43911E5B7D56006814FA /* BrowserTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7B43901E5B7D56006814FA /* BrowserTableViewController.swift */; };
 		3A7B43951E5BA8B4006814FA /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A7B43941E5BA8B3006814FA /* ImageViewController.swift */; };
 		3A8CBBB71E6B0B6B00DFEAAE /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A8CBBB61E6B0B6B00DFEAAE /* iTunesArtwork.png */; };
+		3A8D78BE1EA3FAE7004AAAAD /* prepareForSegue (NMTerminalViewController).swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8D78BD1EA3FAE7004AAAAD /* prepareForSegue (NMTerminalViewController).swift */; };
 		3A9437D21E5CFB0000202F1D /* HTMLViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9437D11E5CFB0000202F1D /* HTMLViewController.swift */; };
 		3A9437D41E5DC26E00202F1D /* MissingArtworkMusic.png in Resources */ = {isa = PBXBuildFile; fileRef = 3A9437D31E5DC26E00202F1D /* MissingArtworkMusic.png */; };
 		3A99A2861E60F3E3001136AB /* PDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A99A2851E60F3E3001136AB /* PDFViewController.swift */; };
+		3A9F8B161EA199EC003C2664 /* Monaco.dfont in Resources */ = {isa = PBXBuildFile; fileRef = 3A9F8B151EA1981B003C2664 /* Monaco.dfont */; };
+		3A9F8B181EA1AB99003C2664 /* help in Resources */ = {isa = PBXBuildFile; fileRef = 3A9F8B171EA1AB99003C2664 /* help */; };
+		3A9F8B1A1EA26FF8003C2664 /* aide in Resources */ = {isa = PBXBuildFile; fileRef = 3A9F8B191EA26FF8003C2664 /* aide */; };
 		3AA0F7DD1E6A1CB800F5E13B /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA0F7DC1E6A1CB800F5E13B /* AdSupport.framework */; };
 		3AA0F7E11E6A20BE00F5E13B /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA0F7E01E6A20BE00F5E13B /* GoogleMobileAds.framework */; };
 		3AA0F7E31E6A211100F5E13B /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA0F7E21E6A211100F5E13B /* CoreTelephony.framework */; };
@@ -46,7 +55,6 @@
 		3AA0F7ED1E6A214500F5E13B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AA0F7EC1E6A214500F5E13B /* SystemConfiguration.framework */; };
 		3AA0F7EF1E6A292E00F5E13B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3AA0F7EE1E6A292E00F5E13B /* GoogleService-Info.plist */; };
 		3AA0F7F11E6A2A6700F5E13B /* Ad (BrowserTableViewController).swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0F7F01E6A2A6700F5E13B /* Ad (BrowserTableViewController).swift */; };
-		3AA0F7F51E6AFF7700F5E13B /* Instructions in Resources */ = {isa = PBXBuildFile; fileRef = 3AA0F7F41E6AFF7700F5E13B /* Instructions */; };
 		3AA166F81E7EB5010080D35A /* IndexRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA166F71E7EB5010080D35A /* IndexRequestHandler.swift */; };
 		3AA166FC1E7EB5010080D35A /* fastFiles search.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3AA166F51E7EB5010080D35A /* fastFiles search.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3AA167021E7EB73D0080D35A /* icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3AA167011E7EB73D0080D35A /* icons.xcassets */; };
@@ -54,6 +62,9 @@
 		3AA167061E7EDF6C0080D35A /* 3DTouch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA167051E7EDF6C0080D35A /* 3DTouch.swift */; };
 		3AA167081E7EE1DF0080D35A /* urlScheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA167071E7EE1DF0080D35A /* urlScheme.swift */; };
 		3AA1670A1E7EFFF20080D35A /* CodeToolBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA167091E7EFFF20080D35A /* CodeToolBar.swift */; };
+		3AA206231EA2994600C5911D /* SFTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA206221EA2994600C5911D /* SFTPViewController.swift */; };
+		3AA206251EA29B5200C5911D /* viewDidLoad (SFTPViewController).swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA206241EA29B5200C5911D /* viewDidLoad (SFTPViewController).swift */; };
+		3AA206281EA29DF400C5911D /* SFTPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA206271EA29DF400C5911D /* SFTPTableViewController.swift */; };
 		3AA56A7D1E5BBFE40076317A /* TextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA56A7C1E5BBFE40076317A /* TextViewController.swift */; };
 		3AA9F55E1E7479B200A0EA14 /* iCloudSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA9F55D1E7479B200A0EA14 /* iCloudSync.swift */; };
 		3ACDC8BE1E6CC069007CBE9F /* UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ACDC8BD1E6CC069007CBE9F /* UITextFieldDelegate.swift */; };
@@ -193,8 +204,10 @@
 		3A4A34241E7DC1C30015CB97 /* Files.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Files.entitlements; sourceTree = "<group>"; };
 		3A4A34251E7DF9FD0015CB97 /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
 		3A548CA11E85F54C005442E8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
-		3A683BC31E7DAE6E0020CFB7 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		3A67233E1E914D2A00973699 /* Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
+		3A6AA3111EA3B31000D34310 /* NMTerminalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NMTerminalViewController.swift; sourceTree = "<group>"; };
 		3A6B3B981E908177005466E2 /* downloadFromCloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = downloadFromCloud.swift; sourceTree = "<group>"; };
+		3A6D24BE1EA2AA6400F3236F /* ListFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListFiles.swift; sourceTree = "<group>"; };
 		3A6DB8FE1E86FC13006442EC /* encodeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = encodeVideo.swift; sourceTree = "<group>"; };
 		3A72035B1E62521A00225ADE /* fastFiles documents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "fastFiles documents.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A72035F1E62521B00225ADE /* DocumentPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPickerViewController.swift; sourceTree = "<group>"; };
@@ -204,12 +217,19 @@
 		3A72036D1E62521B00225ADE /* FileProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileProvider.swift; sourceTree = "<group>"; };
 		3A72036F1E62521B00225ADE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A780FEE1E76135B00145A57 /* SyntaxHighlighting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyntaxHighlighting.swift; sourceTree = "<group>"; };
+		3A7A5AF81EA2B74300FA47E3 /* Notifications (SFTPTableViewController).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notifications (SFTPTableViewController).swift"; sourceTree = "<group>"; };
+		3A7A5AFA1EA2BD2900FA47E3 /* UIDocumentPickerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDocumentPickerDelegate.swift; sourceTree = "<group>"; };
+		3A7A5AFC1EA2E75E00FA47E3 /* Commands.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commands.swift; sourceTree = "<group>"; };
 		3A7B43901E5B7D56006814FA /* BrowserTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserTableViewController.swift; sourceTree = "<group>"; };
 		3A7B43941E5BA8B3006814FA /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		3A8CBBB61E6B0B6B00DFEAAE /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		3A8D78BD1EA3FAE7004AAAAD /* prepareForSegue (NMTerminalViewController).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "prepareForSegue (NMTerminalViewController).swift"; sourceTree = "<group>"; };
 		3A9437D11E5CFB0000202F1D /* HTMLViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTMLViewController.swift; sourceTree = "<group>"; };
 		3A9437D31E5DC26E00202F1D /* MissingArtworkMusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MissingArtworkMusic.png; sourceTree = "<group>"; };
 		3A99A2851E60F3E3001136AB /* PDFViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PDFViewController.swift; sourceTree = "<group>"; };
+		3A9F8B151EA1981B003C2664 /* Monaco.dfont */ = {isa = PBXFileReference; lastKnownFileType = file; path = Monaco.dfont; sourceTree = "<group>"; };
+		3A9F8B171EA1AB99003C2664 /* help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = help; sourceTree = "<group>"; };
+		3A9F8B191EA26FF8003C2664 /* aide */ = {isa = PBXFileReference; lastKnownFileType = folder; path = aide; sourceTree = "<group>"; };
 		3AA0F7DA1E6A1CB400F5E13B /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		3AA0F7DC1E6A1CB800F5E13B /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		3AA0F7E01E6A20BE00F5E13B /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
@@ -221,7 +241,6 @@
 		3AA0F7EC1E6A214500F5E13B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3AA0F7EE1E6A292E00F5E13B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3AA0F7F01E6A2A6700F5E13B /* Ad (BrowserTableViewController).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Ad (BrowserTableViewController).swift"; sourceTree = "<group>"; };
-		3AA0F7F41E6AFF7700F5E13B /* Instructions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Instructions; sourceTree = "<group>"; };
 		3AA166F51E7EB5010080D35A /* fastFiles search.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "fastFiles search.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA166F71E7EB5010080D35A /* IndexRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexRequestHandler.swift; sourceTree = "<group>"; };
 		3AA166F91E7EB5010080D35A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -231,6 +250,9 @@
 		3AA167051E7EDF6C0080D35A /* 3DTouch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 3DTouch.swift; sourceTree = "<group>"; };
 		3AA167071E7EE1DF0080D35A /* urlScheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = urlScheme.swift; sourceTree = "<group>"; };
 		3AA167091E7EFFF20080D35A /* CodeToolBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeToolBar.swift; sourceTree = "<group>"; };
+		3AA206221EA2994600C5911D /* SFTPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPViewController.swift; sourceTree = "<group>"; };
+		3AA206241EA29B5200C5911D /* viewDidLoad (SFTPViewController).swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "viewDidLoad (SFTPViewController).swift"; sourceTree = "<group>"; };
+		3AA206271EA29DF400C5911D /* SFTPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFTPTableViewController.swift; sourceTree = "<group>"; };
 		3AA56A7C1E5BBFE40076317A /* TextViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewController.swift; sourceTree = "<group>"; };
 		3AA9F55D1E7479B200A0EA14 /* iCloudSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iCloudSync.swift; sourceTree = "<group>"; };
 		3ACDC8BD1E6CC069007CBE9F /* UITextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITextFieldDelegate.swift; sourceTree = "<group>"; };
@@ -385,11 +407,13 @@
 		3A3FAC7C1E5DC7B8004075C1 /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				3A9F8B191EA26FF8003C2664 /* aide */,
+				3A9F8B171EA1AB99003C2664 /* help */,
 				3AE129EB1E77514500ADCE6A /* Licenses */,
-				3AA0F7F41E6AFF7700F5E13B /* Instructions */,
 				3AF361F11E639388000C735C /* Medias */,
 				3ADE02661E5B6F2C00F0DB3A /* Main.storyboard */,
 				3ADE026B1E5B6F2C00F0DB3A /* LaunchScreen.storyboard */,
+				3A9F8B151EA1981B003C2664 /* Monaco.dfont */,
 				3ADE026E1E5B6F2C00F0DB3A /* Info.plist */,
 				3AA0F7EE1E6A292E00F5E13B /* GoogleService-Info.plist */,
 				3ADE6FC91E85F19C003BEBFC /* Localizable.strings */,
@@ -410,6 +434,14 @@
 				3A4A34171E7DBC8C0015CB97 /* Info.plist */,
 			);
 			path = Files;
+			sourceTree = "<group>";
+		};
+		3A6AA3101EA3B2CE00D34310 /* NMTerminalViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3A6AA3111EA3B31000D34310 /* NMTerminalViewController.swift */,
+			);
+			name = NMTerminalViewController;
 			sourceTree = "<group>";
 		};
 		3A72035C1E62521B00225ADE /* fastFiles documents */ = {
@@ -461,6 +493,28 @@
 			path = "fastFiles search";
 			sourceTree = "<group>";
 		};
+		3AA206211EA2990600C5911D /* SFTPViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3AA206221EA2994600C5911D /* SFTPViewController.swift */,
+				3AA206241EA29B5200C5911D /* viewDidLoad (SFTPViewController).swift */,
+			);
+			name = SFTPViewController;
+			sourceTree = "<group>";
+		};
+		3AA206261EA29DD000C5911D /* SFTPTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3AA206271EA29DF400C5911D /* SFTPTableViewController.swift */,
+				3A8D78BD1EA3FAE7004AAAAD /* prepareForSegue (NMTerminalViewController).swift */,
+				3A7A5AFC1EA2E75E00FA47E3 /* Commands.swift */,
+				3A7A5AFA1EA2BD2900FA47E3 /* UIDocumentPickerDelegate.swift */,
+				3A7A5AF81EA2B74300FA47E3 /* Notifications (SFTPTableViewController).swift */,
+				3A6D24BE1EA2AA6400F3236F /* ListFiles.swift */,
+			);
+			name = SFTPTableViewController;
+			sourceTree = "<group>";
+		};
 		3ADE02561E5B6F2C00F0DB3A = {
 			isa = PBXGroup;
 			children = (
@@ -506,6 +560,9 @@
 				3AF361A31E630FA1000C735C /* App.swift */,
 				3AF361AF1E634A80000C735C /* AppDelegate */,
 				3AF361B41E634C21000C735C /* ViewController */,
+				3A6AA3101EA3B2CE00D34310 /* NMTerminalViewController */,
+				3AA206261EA29DD000C5911D /* SFTPTableViewController */,
+				3AA206211EA2990600C5911D /* SFTPViewController */,
 				3AF361BD1E634DC8000C735C /* BrowserTableViewController */,
 				3AF911DC1E7F23BA002822F4 /* SettingsStaticTableViewController */,
 				3AF361C71E635595000C735C /* ImageViewController */,
@@ -628,6 +685,7 @@
 				3ACDC8BD1E6CC069007CBE9F /* UITextFieldDelegate.swift */,
 				3AF361EC1E639160000C735C /* viewDidLoad (DownloadViewController).swift */,
 				3AF361EE1E639237000C735C /* prepareForSegue (DownloadViewController).swift */,
+				3A67233E1E914D2A00973699 /* Notifications.swift */,
 			);
 			name = DownloadViewController;
 			sourceTree = "<group>";
@@ -635,7 +693,6 @@
 		3AF361EB1E639125000C735C /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				3A683BC31E7DAE6E0020CFB7 /* icon.png */,
 				3A8CBBB61E6B0B6B00DFEAAE /* iTunesArtwork.png */,
 				3AF7A6051E64A0AE00921ACD /* FF.png */,
 				3AF7A6061E64A0AE00921ACD /* Play.png */,
@@ -941,12 +998,13 @@
 				3AF7A60C1E64A0AE00921ACD /* Rewind.png in Resources */,
 				3ADE026D1E5B6F2C00F0DB3A /* LaunchScreen.storyboard in Resources */,
 				3AF7A6021E649AA800921ACD /* line.png in Resources */,
-				3AA0F7F51E6AFF7700F5E13B /* Instructions in Resources */,
+				3A9F8B181EA1AB99003C2664 /* help in Resources */,
+				3A9F8B1A1EA26FF8003C2664 /* aide in Resources */,
 				3ADE026A1E5B6F2C00F0DB3A /* Assets.xcassets in Resources */,
 				3A8CBBB71E6B0B6B00DFEAAE /* iTunesArtwork.png in Resources */,
 				3AF7A6091E64A0AE00921ACD /* FF.png in Resources */,
+				3A9F8B161EA199EC003C2664 /* Monaco.dfont in Resources */,
 				3AF7A60B1E64A0AE00921ACD /* Pause.png in Resources */,
-				3A683BC41E7DAE6E0020CFB7 /* icon.png in Resources */,
 				3ADE02681E5B6F2C00F0DB3A /* Main.storyboard in Resources */,
 				3A3FACAC1E5F5F34004075C1 /* zip.png in Resources */,
 				3ADE6FC71E85F19C003BEBFC /* Localizable.strings in Resources */,
@@ -1124,6 +1182,7 @@
 				3AF361B11E634AA6000C735C /* Functions.swift in Sources */,
 				3AFD7EBA1E85BAAC0095C9B3 /* Menu.swift in Sources */,
 				3A780FEF1E76135B00145A57 /* SyntaxHighlighting.swift in Sources */,
+				3A7A5AFB1EA2BD2900FA47E3 /* UIDocumentPickerDelegate.swift in Sources */,
 				3AF361DE1E635AE3000C735C /* Controls.swift in Sources */,
 				3AF361EF1E639237000C735C /* prepareForSegue (DownloadViewController).swift in Sources */,
 				3AF911DB1E7F2382002822F4 /* SettingsStaticTableViewController.swift in Sources */,
@@ -1135,12 +1194,17 @@
 				3AF361CB1E635617000C735C /* viewDidLoad (ImageViewController).swift in Sources */,
 				3AF911E01E7F253A002822F4 /* UI (SettingsStaticTableViewController).swift in Sources */,
 				3AF361D71E6358B9000C735C /* WebViewDelegate.swift in Sources */,
+				3AA206281EA29DF400C5911D /* SFTPTableViewController.swift in Sources */,
+				3AA206251EA29B5200C5911D /* viewDidLoad (SFTPViewController).swift in Sources */,
 				3AA167061E7EDF6C0080D35A /* 3DTouch.swift in Sources */,
 				3ADE02651E5B6F2C00F0DB3A /* ViewController.swift in Sources */,
+				3AA206231EA2994600C5911D /* SFTPViewController.swift in Sources */,
 				3AF361D21E63579C000C735C /* displayText.swift in Sources */,
 				3A6B3B991E908177005466E2 /* downloadFromCloud.swift in Sources */,
 				3ACDC8BE1E6CC069007CBE9F /* UITextFieldDelegate.swift in Sources */,
+				3A67233F1E914D2A00973699 /* Notifications.swift in Sources */,
 				3AF361BC1E634D5E000C735C /* getDeviceInfo.swift in Sources */,
+				3A6AA3121EA3B31000D34310 /* NMTerminalViewController.swift in Sources */,
 				3AF361D91E635942000C735C /* viewDidLoad (HTMLViewController).swift in Sources */,
 				3AF361CD1E635685000C735C /* displayImage.swift in Sources */,
 				3AA0F7F11E6A2A6700F5E13B /* Ad (BrowserTableViewController).swift in Sources */,
@@ -1148,7 +1212,9 @@
 				3AF7A60E1E64ACB000921ACD /* applicationOpenURL.swift in Sources */,
 				3A99A2861E60F3E3001136AB /* PDFViewController.swift in Sources */,
 				3AF361E21E635F60000C735C /* Other functions (MusicViewController).swift in Sources */,
+				3A7A5AF91EA2B74300FA47E3 /* Notifications (SFTPTableViewController).swift in Sources */,
 				3ADE02631E5B6F2C00F0DB3A /* AppDelegate.swift in Sources */,
+				3A6D24BF1EA2AA6400F3236F /* ListFiles.swift in Sources */,
 				3A28574D1E88396100DD18BB /* showIndexFile.swift in Sources */,
 				3AF361D01E63574E000C735C /* viewDid (TextViewController).swift in Sources */,
 				3AF911DE1E7F2447002822F4 /* prepareForSegue (SettingsStaticTableviewController).swift in Sources */,
@@ -1161,9 +1227,11 @@
 				3AF361C41E635271000C735C /* ViewDid (BrowserTableViewController).swift in Sources */,
 				3AA1670A1E7EFFF20080D35A /* CodeToolBar.swift in Sources */,
 				3AF361B31E634BE4000C735C /* moveToPublic.swift in Sources */,
+				3A8D78BE1EA3FAE7004AAAAD /* prepareForSegue (NMTerminalViewController).swift in Sources */,
 				3AF361C21E634E62000C735C /* UI.swift in Sources */,
 				3AF361C61E63545F000C735C /* Other functions.swift in Sources */,
 				3AF361ED1E639160000C735C /* viewDidLoad (DownloadViewController).swift in Sources */,
+				3A7A5AFD1EA2E75E00FA47E3 /* Commands.swift in Sources */,
 				3A9437D21E5CFB0000202F1D /* HTMLViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

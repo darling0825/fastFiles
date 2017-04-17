@@ -11,12 +11,6 @@ import UIKit
 extension BrowserTableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) { // Prepare for segue
         
-        if segue.identifier == "files" || segue.identifier == "files2" { // open folder
-            if let nextVC = segue.destination as? BrowserTableViewController {
-                nextVC.dir = nextDir
-            }
-        }
-        
         if segue.identifier == "audio" { // open audio
             if let nextVC = segue.destination as? MusicViewController {
                 nextVC.url = imageURL!

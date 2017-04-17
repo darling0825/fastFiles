@@ -13,10 +13,16 @@ class DocumentPickerViewController: UIDocumentPickerExtensionViewController {
     var docsContent: [URL]?
     @IBOutlet weak var TableView: UITableView!
     @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var Export: UIBarButtonItem!
     
     override func viewDidLoad() { // Documents
         let publicDocs = FileManager.default.containerURL(forSecurityApplicationGroupIdentifier: "group.marcela.ada.files")!.appendingPathComponent("File Provider Storage")
         docsContent = try! FileManager.default.contentsOfDirectory(at: publicDocs, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
+        
+        if self.documentPickerMode != .exportToService && self.documentPickerMode != .moveToService {
+            Export.isEnabled = false
+            Export.tintColor = .clear
+        }
     }
 
     @IBAction func back(_ sender: Any) { // Back
@@ -29,5 +35,8 @@ class DocumentPickerViewController: UIDocumentPickerExtensionViewController {
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func export(_ sender: Any) {
     }
 }

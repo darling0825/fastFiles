@@ -19,7 +19,7 @@ extension DocumentPickerViewController: UITableViewDelegate {
                     if isDir.boolValue {
                         docsContent = try FileManager.default.contentsOfDirectory(at: (docsContent?[indexPath.row])!, includingPropertiesForKeys: nil, options: FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
                         TableView.reloadData()
-                    } else {
+                    } else if self.documentPickerMode != .exportToService && self.documentPickerMode != .moveToService {
                         dismissGrantingAccess(to: docsContent?[indexPath.row])
                     }
                 }

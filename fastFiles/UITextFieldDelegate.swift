@@ -17,23 +17,23 @@ extension DownloadViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
+        var urlString = textField.text
+        
         if textField.tag == 1 { // Load URL
             if !(textField.text?.hasPrefix("http://"))! && !(textField.text?.hasPrefix("https://"))! {
-                textField.text = "http://"+textField.text!
+                urlString = "http://"+textField.text!
             }
-            let url = URL(string:textField.text!)
-            if url != nil{
+            let url = URL(string:urlString!)
+            if url != nil && (url?.absoluteString.contains("."))! {
+                textField.text = urlString
+                print(urlString!)
                 webView.loadRequest(URLRequest(url: url!))
-            } else {
-                let alert = UIAlertController(title: "Error!", message: "Invalid URL!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+            } else { // Search
+                let urlString = "https://www.google.com/search?q=\(textField.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
+                print(urlString)
+                let google = URL(string:urlString)
+                webView.loadRequest(URLRequest(url: google!))
             }
-        } else if textField.tag == 2 { // Google
-            let urlString = "https://www.google.com/search?q=\(textField.text!.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)"
-            print(urlString)
-            let google = URL(string:urlString)
-            webView.loadRequest(URLRequest(url: google!))
         }
         
         return true

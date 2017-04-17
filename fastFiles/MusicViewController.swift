@@ -38,6 +38,7 @@ class MusicViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var previousButton: UIButton!
     
+    @IBOutlet weak var background: UIImageView!
     
     // Actions
     
