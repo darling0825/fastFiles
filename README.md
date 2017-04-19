@@ -23,7 +23,8 @@ An iOS file manager and downloader.
 - [x] Compile Swift files
 - [x] iCloud Drive
 - [x] Document provider
-- [ ] Availabe on AppStore (Uploading) 
+- [ ] Availabe on AppStore (Uploading)
+- [x] TestFlight (http://coldg.ddns.net/fastFiles/beta.php) 
 
 # Classes
 
